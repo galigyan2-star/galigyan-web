@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Galigyan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
@@ -19,7 +19,7 @@
       padding: 40px;
     }
 
-    .active {
+    .page.active {
       display: block;
     }
 
@@ -32,6 +32,18 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      max-width: 600px;
     }
 
     button {
@@ -60,7 +72,7 @@
       color: #ccc;
     }
 
-    .rating .active {
+    .rating span.active {
       color: gold;
     }
   </style>
@@ -68,19 +80,21 @@
 
 <body>
 
-<!-- HOME -->
+<!-- HOME PAGE -->
 <div id="home" class="page active">
   <div id="hero">
     <h1>Galigyan</h1>
-    <p>Your trusted guide to India</p>
+    <p>Your trusted guide to India’s travel, spiritual & cultural places</p>
     <button id="exploreBtn">Explore Now</button>
-    <p style="margin-top:40px;font-size:14px;">Created by Aman Kumar Mishra</p>
+    <p style="margin-top:40px;font-size:14px;">
+      Created by Aman Kumar Mishra
+    </p>
   </div>
 </div>
 
-<!-- EXPLORE -->
+<!-- EXPLORE PAGE -->
 <div id="explore" class="page">
-  <h2>Explore India</h2>
+  <h1>Explore India</h1>
 
   <div class="card">📍 Taj Mahal – Agra</div>
   <div class="card">📍 Golden Temple – Amritsar</div>
@@ -89,9 +103,9 @@
   <button id="continueBtn">Continue</button>
 </div>
 
-<!-- THANK YOU -->
+<!-- THANK YOU PAGE -->
 <div id="thanks" class="page">
-  <h2>Thank You</h2>
+  <h1>Thank You</h1>
   <p>Rate your experience</p>
 
   <div class="rating" id="rating">
@@ -103,8 +117,9 @@
   </div>
 </div>
 
+<!-- SCRIPT -->
 <script>
-  // page switch
+  // PAGE SWITCHING
   function showPage(id) {
     var pages = document.getElementsByClassName("page");
     for (var i = 0; i < pages.length; i++) {
@@ -121,7 +136,7 @@
     showPage("thanks");
   };
 
-  // hero images
+  // HERO IMAGE ROTATION
   var hero = document.getElementById("hero");
   var images = [
     "https://images.unsplash.com/photo-1564507592333-c60657eea523",
@@ -140,14 +155,16 @@
     hero.style.backgroundImage = "url(" + images[index] + ")";
   }, 4000);
 
-  // rating
+  // RATING SYSTEM
   var stars = document.getElementById("rating").getElementsByTagName("span");
+
   for (var s = 0; s < stars.length; s++) {
     stars[s].onclick = function () {
       for (var j = 0; j < stars.length; j++) {
         stars[j].classList.remove("active");
       }
       this.classList.add("active");
+
       var prev = this.previousElementSibling;
       while (prev) {
         prev.classList.add("active");
