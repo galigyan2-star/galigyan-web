@@ -4,237 +4,263 @@
 <meta charset="UTF-8">
 <title>GaliGyan</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-:root {
-  --bg: #f5f1e8;
-  --text: #222;
-  --card: #ffffff;
-  --primary: #ff7a18;
+:root{
+  --bg:#f6f3ec;
+  --card:#ffffff;
+  --text:#222;
+  --accent:#ff7a18;
 }
 
-.dark {
-  --bg: #121212;
-  --text: #f1f1f1;
-  --card: #1e1e1e;
-  --primary: #ff9f43;
+*{
+  box-sizing:border-box;
 }
 
-* {
-  transition: background 0.4s, color 0.4s;
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow:hidden;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
+/* ---------- PAGE SLIDE SYSTEM ---------- */
+section{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+  transform:translateX(100%);
+  transition:transform .6s ease;
 }
 
-/* Toggle button */
-.toggle {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 100;
+section.active{ transform:translateX(0); }
+section.left{ transform:translateX(-100%); }
+
+/* ---------- COMMON ---------- */
+button{
+  padding:12px 26px;
+  border:none;
+  border-radius:8px;
+  background:var(--accent);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
 }
 
-.toggle button {
-  padding: 8px 12px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  background: var(--primary);
-  color: white;
+h1{ font-size:52px; margin:10px 0; }
+h2{ font-size:34px; margin-bottom:10px; }
+p{
+  max-width:520px;
+  text-align:center;
+  line-height:1.6;
 }
 
-/* Pages */
-section {
-  min-height: 100vh;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 40px;
-  text-align: center;
+/* ---------- INTRO ---------- */
+#intro{
+  background-size:cover;
+  background-position:center;
 }
 
-section.active {
-  display: flex;
+.intro-box{
+  background:rgba(255,255,255,.88);
+  padding:40px 45px;
+  border-radius:18px;
+  text-align:center;
 }
 
-/* Intro animation */
-#intro {
-  animation: introIn 0.9s ease forwards;
+.creator{
+  display:block;
+  margin-top:18px;
+  font-size:13px;
+  opacity:.7;
+  letter-spacing:.6px;
 }
 
-@keyframes introIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ---------- SERVICES ---------- */
+.cards{
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:20px;
 }
 
-/* Buttons */
-button {
-  padding: 12px 22px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background: var(--primary);
-  color: white;
-  cursor: pointer;
-  margin-top: 20px;
+.card{
+  width:220px;
+  padding:18px;
+  border-radius:14px;
+  background:var(--card);
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 10px 22px rgba(0,0,0,.12);
+  transition:transform .3s ease;
 }
 
-/* Page flip */
-.page {
-  perspective: 1200px;
+.card:hover{
+  transform:translateY(-5px);
 }
 
-.flip-out {
-  animation: flipOut 0.6s ease forwards;
+.card img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:10px;
 }
 
-@keyframes flipOut {
-  from { transform: rotateY(0deg); opacity: 1; }
-  to { transform: rotateY(-90deg); opacity: 0; }
+/* ---------- LOCATION ---------- */
+.input-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:15px;
 }
 
-.flip-in {
-  animation: flipIn 0.6s ease forwards;
+input{
+  padding:10px;
+  width:260px;
+  font-size:14px;
 }
 
-@keyframes flipIn {
-  from { transform: rotateY(90deg); opacity: 0; }
-  to { transform: rotateY(0deg); opacity: 1; }
+.slider{
+  width:260px;
+  margin-top:20px;
 }
 
-/* Cards */
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+/* ---------- THANK YOU ---------- */
+#thankyou{
+  background:url("https://images.unsplash.com/photo-1524492412937-b28074a5d7da") center/cover;
 }
 
-.card {
-  background: var(--card);
-  padding: 20px;
-  margin: 10px;
-  width: 260px;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
-  transition: opacity 0.5s, background 0.5s;
+.thank-box{
+  background:rgba(255,255,255,.88);
+  padding:40px;
+  border-radius:18px;
+  text-align:center;
 }
 </style>
 </head>
 
 <body>
 
-<!-- THEME TOGGLE -->
-<div class="toggle">
-  <button id="themeBtn">🌙 / ☀</button>
-</div>
-
-<!-- INTRO -->
-<section id="intro" class="active page">
-  <h1 style="font-size:48px;">GaliGyan</h1>
-  <p>Your Personal Guide to India</p>
-  <button id="exploreBtn">Explore More</button>
-</section>
-
-<!-- SERVICES -->
-<section id="services" class="page">
-  <h2>Our Services</h2>
-  <div class="cards">
-    <div class="card service">Hidden Gems & Places</div>
-    <div class="card service">Hotels & Rest Houses</div>
-    <div class="card service">Spiritual Places & Museums</div>
-    <div class="card service">Restaurants & Food Courts</div>
-    <div class="card service">Malls & Shopping Areas</div>
+<!-- INTRO PAGE -->
+<section id="intro" class="active">
+  <div class="intro-box">
+    <h1>GaliGyan</h1>
+    <p>
+      Discover India better — hidden gems, hotels, food spots,
+      spiritual places and shopping areas — all in one place.
+    </p>
+    <button onclick="go('services')">Explore</button>
+    <small class="creator">Created by Aman Kumar Mishra</small>
   </div>
 </section>
 
-<!-- LOCATION -->
-<section id="location" class="page">
+<!-- SERVICES PAGE -->
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="cards">
+    <div class="card" onclick="go('location')">
+      <img src="https://images.unsplash.com/photo-1583248369069-9d91f6e2983c">
+      Hidden Gems
+    </div>
+    <div class="card" onclick="go('location')">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945">
+      Hotels & Stays
+    </div>
+    <div class="card" onclick="go('location')">
+      <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5">
+      Spiritual Places
+    </div>
+    <div class="card" onclick="go('location')">
+      <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d">
+      Food Courts
+    </div>
+    <div class="card" onclick="go('location')">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
+      Shopping Areas
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION PAGE -->
+<section id="location">
   <h2>Select Location</h2>
-  <input placeholder="Enter location" style="padding:10px;width:250px;"><br><br>
-  <select style="padding:10px;width:250px;">
-    <option>1 km</option>
-    <option>5 km</option>
-    <option>10 km</option>
-    <option>Unlimited</option>
-  </select><br><br>
+  <div class="input-box">
+    <span>📍</span>
+    <input placeholder="Enter city or area (e.g. Delhi)">
+  </div>
+
+  <input type="range" min="1" max="100" value="10"
+         class="slider"
+         oninput="radiusText.innerText=this.value+' km'">
+  <p id="radiusText">10 km</p>
+
   <button onclick="go('results')">Show Results</button>
 </section>
 
-<!-- RESULTS -->
-<section id="results" class="page">
-  <h2>Best Places For You</h2>
-  <div class="card">Place 1 – short info</div>
-  <div class="card">Place 2 – short info</div>
+<!-- RESULTS PAGE -->
+<section id="results">
+  <h2>Best Matches</h2>
+  <div class="cards">
+    <div class="card">
+      Sample Place 1
+      <small>Short description here</small>
+    </div>
+    <div class="card">
+      Sample Place 2
+      <small>Short description here</small>
+    </div>
+  </div>
   <button onclick="go('thankyou')">Continue</button>
 </section>
 
-<!-- THANK YOU -->
-<section id="thankyou" class="page">
-  <h2>Thank You for Visiting</h2>
-  <p>We hope GaliGyan helped you explore better.</p>
-  <button onclick="go('intro')">Go Home</button>
+<!-- THANK YOU PAGE -->
+<section id="thankyou">
+  <div class="thank-box">
+    <h2>Thank You</h2>
+    <p>
+      We hope GaliGyan helped you explore India in a better way.
+    </p>
+    <button onclick="go('intro')">Back to Home</button>
+  </div>
 </section>
 
 <script>
-/* Page navigation */
-function go(id) {
-  const current = document.querySelector("section.active");
-  const next = document.getElementById(id);
-  if (current === next) return;
+/* ---------- PAGE SLIDE LOGIC ---------- */
+let current="intro";
 
-  current.classList.add("flip-out");
-  setTimeout(() => {
-    current.classList.remove("active", "flip-out");
-    next.classList.add("active", "flip-in");
-    setTimeout(() => next.classList.remove("flip-in"), 600);
-  }, 600);
+function go(id){
+  const curr=document.getElementById(current);
+  const next=document.getElementById(id);
+  curr.classList.add("left");
+  next.classList.add("active");
+
+  setTimeout(()=>{
+    curr.classList.remove("active","left");
+    current=id;
+  },600);
 }
 
-document.getElementById("exploreBtn").onclick = () => go("services");
-
-/* Services auto-rotation */
-const services = [
-  "Hidden Gems & Places",
-  "Hotels & Rest Houses",
-  "Spiritual Places & Museums",
-  "Restaurants & Food Courts",
-  "Malls & Shopping Areas"
+/* ---------- INTRO BACKGROUND ROTATION ---------- */
+const intro=document.getElementById("intro");
+const images=[
+  "https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
+  "https://images.unsplash.com/photo-1501117716987-c8e1ecb210b7",
+  "https://images.unsplash.com/photo-1548013146-72479768bada"
 ];
-const colors = ["#fff3e0", "#e3f2fd", "#e8f5e9", "#fce4ec", "#ede7f6"];
-const cards = document.querySelectorAll(".service");
-let idx = 0;
+let i=0;
 
-setInterval(() => {
-  cards.forEach((card, i) => {
-    card.style.opacity = 0;
-    setTimeout(() => {
-      card.textContent = services[(idx + i) % services.length];
-      card.style.background = colors[(idx + i) % colors.length];
-      card.style.opacity = 1;
-    }, 300);
-    card.onclick = () => go("location");
-  });
-  idx++;
-}, 1000);
-
-/* Theme system (saved) */
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "dark") document.body.classList.add("dark");
-
-document.getElementById("themeBtn").onclick = () => {
-  document.body.classList.toggle("dark");
-  localStorage.setItem(
-    "theme",
-    document.body.classList.contains("dark") ? "dark" : "light"
-  );
-};
+setInterval(()=>{
+  intro.style.backgroundImage=url(${images[i%images.length]});
+  i++;
+},3500);
 </script>
 
 </body>
