@@ -14,16 +14,24 @@
   }
 
   body{
-    overflow:hidden; /* NO SCROLL */
+    overflow:hidden;
   }
 
-  /* FULL SCREEN INTRO */
-  .intro{
+  /* PAGE SYSTEM */
+  .page{
+    display:none;
     width:100vw;
     height:100vh;
+  }
+
+  .page.active{
+    display:flex;
+  }
+
+  /* ---------- INTRO PAGE ---------- */
+  .intro{
     background-size:cover;
     background-position:center;
-    display:flex;
     flex-direction:column;
     justify-content:space-between;
     align-items:center;
@@ -31,7 +39,6 @@
     position:relative;
   }
 
-  /* DARK OVERLAY */
   .intro::before{
     content:"";
     position:absolute;
@@ -39,21 +46,17 @@
     background:rgba(0,0,0,0.45);
   }
 
-  /* FLOATING TITLE */
   .title{
     position:relative;
     margin-top:25px;
     font-size:38px;
     font-weight:bold;
-    letter-spacing:1px;
     z-index:2;
   }
 
-  /* CENTER BUTTON */
   .center{
     position:relative;
     z-index:2;
-    text-align:center;
   }
 
   .explore-btn{
@@ -66,7 +69,6 @@
     cursor:pointer;
   }
 
-  /* FOOTER TEXT */
   .footer{
     position:relative;
     z-index:2;
@@ -74,29 +76,78 @@
     font-size:14px;
     opacity:0.85;
   }
+
+  /* ---------- PAGE 2 ---------- */
+  .page2{
+    background:#f4f1ea;
+    flex-direction:column;
+    align-items:center;
+    padding:30px;
+  }
+
+  .home-btn{
+    align-self:flex-start;
+    font-size:20px;
+    cursor:pointer;
+    margin-bottom:20px;
+  }
+
+  .page2 h2{
+    margin-top:40px;
+    font-size:28px;
+  }
 </style>
 </head>
 
 <body>
 
-<section class="intro" id="intro">
+<!-- CLICK SOUND -->
+<audio id="clickSound">
+  <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 : INTRO -->
+<section class="page intro active" id="page-intro">
   <div class="title">Galigyan</div>
 
   <div class="center">
-    <button class="explore-btn">Explore Now →</button>
+    <button class="explore-btn" id="exploreBtn">Explore Now →</button>
   </div>
 
   <div class="footer">Created by Aman Kumar Mishra</div>
 </section>
 
-<script>
-  /* BACKGROUND IMAGE ROTATION (SAFE JS) */
-  var intro = document.getElementById("intro");
+<!-- PAGE 2 -->
+<section class="page page2" id="page-2">
+  <div class="home-btn" id="homeBtn">🏠 Home</div>
 
+  <h2>Welcome to Galigyan</h2>
+  <p>Select a service to continue (next step)</p>
+</section>
+
+<script>
+  /* ---------- CLICK SOUND ---------- */
+  var clickSound = document.getElementById("clickSound");
+  function playClick(){
+    clickSound.currentTime = 0;
+    clickSound.play();
+  }
+
+  /* ---------- PAGE SWITCH ---------- */
+  function showPage(id){
+    var pages = document.getElementsByClassName("page");
+    for(var i=0;i<pages.length;i++){
+      pages[i].classList.remove("active");
+    }
+    document.getElementById(id).classList.add("active");
+  }
+
+  /* ---------- INTRO IMAGE ROTATION ---------- */
+  var intro = document.getElementById("page-intro");
   var images = [
-    "https://images.unsplash.com/photo-1564507592333-c60657eea523",  // Taj Mahal
-    "https://images.unsplash.com/photo-1548013146-72479768bada",  // Temple
-    "https://images.unsplash.com/photo-1506466010722-395aa2bef877" // Travel
+    "https://images.unsplash.com/photo-1564507592333-c60657eea523",
+    "https://images.unsplash.com/photo-1548013146-72479768bada",
+    "https://images.unsplash.com/photo-1506466010722-395aa2bef877"
   ];
 
   var i = 0;
@@ -104,11 +155,20 @@
 
   setInterval(function(){
     i++;
-    if(i >= images.length){
-      i = 0;
-    }
+    if(i >= images.length){ i = 0; }
     intro.style.backgroundImage = "url(" + images[i] + ")";
-  }, 4000);
+  },4000);
+
+  /* ---------- EVENTS ---------- */
+  document.getElementById("exploreBtn").onclick = function(){
+    playClick();
+    showPage("page-2");
+  };
+
+  document.getElementById("homeBtn").onclick = function(){
+    playClick();
+    showPage("page-intro");
+  };
 </script>
 
 </body>
