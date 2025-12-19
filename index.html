@@ -1,137 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Galigyan – Travel Guide</title>
-
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
-body{background:#fff7e6;color:#222}
-
-.page{display:none;min-height:100vh;padding:30px}
-.page.active{display:block}
-
-.center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-
-button{
-  padding:14px 26px;
-  border:none;
-  border-radius:10px;
-  background:#2563eb;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-}
-button.secondary{background:#e5e7eb;color:#111}
-
-.hero{
-  width:100%;
-  height:60vh;
-  background-size:cover;
-  background-position:center;
-  border-radius:20px;
-  margin-bottom:25px;
-  transition:background-image 1s ease-in-out;
-}
-
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:30px}
-.card{
-  background:white;
-  padding:20px;
-  border-radius:16px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-}
-
-input,select{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:8px;
-  border:1px solid #ccc;
-}
-
-.rating span{
-  font-size:28px;
-  cursor:pointer;
-}
-.rating span.active{color:gold}
-</style>
-</head>
-
-<body>
-
-<!-- INTRO -->
-<div class="page active center" id="intro">
-  <div class="hero" id="hero"></div>
-  <h1>Galigyan</h1>
-  <p>Your guide to India’s best travel, hotels & spiritual places</p>
-  <p style="margin-top:8px;font-size:14px;">Created by Aman Kumar Mishra</p>
-  <br>
-  <button onclick="go('services')">Explore Now</button>
-</div>
-
-<!-- SERVICES -->
-<div class="page" id="services">
-  <h2>What would you like to explore?</h2>
-  <div class="cards">
-    <div class="card">🏛 Travel Spots</div>
-    <div class="card">🏨 Hotels & Stays</div>
-    <div class="card">🛕 Spiritual Places</div>
-    <div class="card">🛍 Shopping Areas</div>
-  </div>
-  <br>
-  <button onclick="go('location')">Continue</button>
-</div>
-
-<!-- LOCATION -->
-<div class="page" id="location">
-  <h2>Select Location</h2>
-  <input placeholder="Enter city (e.g. Delhi)">
-  <br><br>
-  <button class="secondary">📍 Use GPS (demo)</button>
-  <br><br>
-  <label>Radius (km)</label>
-  <input type="range" min="1" max="100" value="10">
-  <br><br>
-  <button onclick="go('results')">Find Places</button>
-</div>
-
-<!-- RESULTS -->
-<div class="page" id="results">
-  <h2>Places Near You</h2>
-  <div class="cards">
-    <div class="card">
-      <b>Taj Mahal</b><br>Agra, Uttar Pradesh
-    </div>
-    <div class="card">
-      <b>Golden Temple</b><br>Amritsar, Punjab
-    </div>
-    <div class="card">
-      <b>Meenakshi Temple</b><br>Madurai, Tamil Nadu
-    </div>
-  </div>
-  <br>
-  <button onclick="go('thankyou')">Finish</button>
-</div>
-
-<!-- THANK YOU -->
-<div class="page center" id="thankyou">
-  <h2>Thank You for Visiting Galigyan</h2>
-  <p>Rate your experience</p>
-  <div class="rating">
-    <span onclick="rate(this)">★</span>
-    <span onclick="rate(this)">★</span>
-    <span onclick="rate(this)">★</span>
-    <span onclick="rate(this)">★</span>
-    <span onclick="rate(this)">★</span>
-  </div>
-  <br>
-  <button onclick="go('intro')">Go Home</button>
-</div>
-
 <script>
-/* page navigation */
 function go(id){
   document.querySelectorAll('.page').forEach(function(p){
     p.classList.remove('active');
@@ -139,27 +6,26 @@ function go(id){
   document.getElementById(id).classList.add('active');
 }
 
-/* hero image rotation */
-var hero=document.getElementById("hero");
-var imgs=[
-"https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
-"https://images.unsplash.com/photo-1548013146-72479768bada",
-"https://images.unsplash.com/photo-1506466010722-395aa2bef877"
+var hero = document.getElementById("hero");
+var imgs = [
+  "https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
+  "https://images.unsplash.com/photo-1548013146-72479768bada",
+  "https://images.unsplash.com/photo-1506466010722-395aa2bef877"
 ];
-var i=0;
-hero.style.backgroundImage="url("+imgs[0]+")";
-setInterval(function(){
-  i=(i+1)%imgs.length;
-  hero.style.backgroundImage="url("+imgs[i]+")";
-},4000);
 
-/* rating */
+var i = 0;
+hero.style.backgroundImage = "url(" + imgs[0] + ")";
+
+setInterval(function(){
+  i = (i + 1) % imgs.length;
+  hero.style.backgroundImage = "url(" + imgs[i] + ")";
+}, 4000);
+
 function rate(el){
-  var stars=document.querySelectorAll('.rating span');
-  stars.forEach(function(s){s.classList.remove('active')});
+  var stars = document.querySelectorAll('.rating span');
+  stars.forEach(function(s){
+    s.classList.remove('active');
+  });
   el.classList.add('active');
 }
 </script>
-
-</body>
-</html>
