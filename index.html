@@ -9,52 +9,25 @@
   --bg:#f6f3ec;
   --card:#ffffff;
   --text:#222;
-  --muted:#555;
-  --btn1:#6a11cb;
-  --btn2:#ff006e;
+  --muted:#666;
+  --accent1:#6a11cb;
+  --accent2:#ff006e;
 }
-
 body.dark{
   --bg:#121212;
   --card:#1e1e1e;
   --text:#f5f5f5;
-  --muted:#bbb;
+  --muted:#aaa;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:var(--bg);color:var(--text);}
 
-body{
-  background:var(--bg);
-  color:var(--text);
-}
-
-/* ---------- THEME TOGGLE ---------- */
-.toggle{
-  position:fixed;
-  top:15px;
-  right:15px;
-  z-index:1000;
-  padding:10px 14px;
-  border-radius:20px;
-  background:var(--card);
-  cursor:pointer;
-  font-size:14px;
-}
-
-/* ---------- PAGE SYSTEM ---------- */
-.page{
-  display:none;
-  min-height:100vh;
-  padding:40px 20px;
-}
+/* page system */
+.page{display:none;min-height:100vh;padding:40px 20px;}
 .page.active{display:block}
 
-/* ---------- HERO ---------- */
+/* hero */
 .hero{
   background-size:cover;
   background-position:center;
@@ -72,8 +45,8 @@ body{
 .hero-content{
   position:relative;
   text-align:center;
-  max-width:720px;
   color:white;
+  max-width:720px;
 }
 .hero h1{font-size:42px;margin-bottom:15px}
 .hero p{font-size:18px;margin-bottom:25px}
@@ -81,13 +54,13 @@ body{
   padding:14px 32px;
   border:none;
   border-radius:30px;
-  background:linear-gradient(90deg,var(--btn1),var(--btn2));
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
   color:white;
   cursor:pointer;
 }
 .creator{margin-top:18px;font-size:13px;opacity:.85}
 
-/* ---------- CARDS ---------- */
+/* cards */
 .card{
   background:var(--card);
   border-radius:18px;
@@ -95,27 +68,10 @@ body{
   margin:18px auto;
   max-width:420px;
   box-shadow:0 10px 25px rgba(0,0,0,.08);
-  cursor:pointer;
 }
 
-/* ---------- LOCATION ---------- */
-.location-box{
-  max-width:420px;
-  margin:0 auto;
-  background:var(--card);
-  padding:30px;
-  border-radius:22px;
-}
-.location-box input{
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  border:1px solid #ccc;
-  margin-bottom:20px;
-}
-.range{width:100%}
-.radius{text-align:center;margin:10px 0 20px;font-weight:bold}
-button.full{
+/* buttons */
+.full{
   width:100%;
   padding:14px;
   border:none;
@@ -124,63 +80,88 @@ button.full{
   color:white;
   cursor:pointer;
 }
+
+/* rating */
+.stars span{
+  font-size:28px;
+  cursor:pointer;
+  color:#ccc;
+}
+.stars span.active{color:gold}
 </style>
 </head>
 
 <body>
-
-<div class="toggle" onclick="toggleTheme()">🌙 Theme</div>
 
 <!-- HERO -->
 <section class="page hero active" id="hero">
   <div class="hero-content">
     <h1>Discover Incredible India with GaliGyan</h1>
     <p>Your trusted guide to places, hotels, food & culture</p>
-    <button onclick="go('services')">Explore Now →</button>
+    <button onclick="go('services')">Explore More →</button>
     <div class="creator">Created by Aman Kumar Mishra</div>
   </div>
 </section>
 
 <!-- SERVICES -->
 <section class="page" id="services">
-  <h2 align="center">What do you want to explore?</h2>
-  <p align="center" style="color:var(--muted)">Choose a category</p>
+  <h2 align="center">Choose a Category</h2>
+  <p align="center" style="color:var(--muted)">Mock demo (API coming later)</p>
 
   <div class="card" onclick="go('location')">📍 Travel Spots</div>
-  <div class="card" onclick="go('location')">🏨 Hotels & Stays</div>
   <div class="card" onclick="go('location')">🛕 Spiritual Places</div>
   <div class="card" onclick="go('location')">🍽 Restaurants</div>
-  <div class="card" onclick="go('location')">🛍 Shopping Areas</div>
 </section>
 
 <!-- LOCATION -->
 <section class="page" id="location">
-  <h2 align="center">Where are you?</h2>
-  <p align="center" style="color:var(--muted)">Enter location & radius</p>
+  <h2 align="center">Your Location</h2>
+  <p align="center" style="color:var(--muted)">Location input is demo only</p>
 
-  <div class="location-box">
-    <input placeholder="Enter city or area">
-    <input type="range" min="1" max="100" value="10" class="range"
-      oninput="r.innerText=this.value+' km'">
-    <div class="radius" id="r">10 km</div>
-    <button class="full" onclick="go('results')">Find Places</button>
+  <div class="card">
+    <input placeholder="Enter any city (demo)"
+      style="width:100%;padding:12px;border-radius:10px;border:1px solid #ccc">
+    <br><br>
+    <button class="full" onclick="go('results')">Show Results</button>
   </div>
 </section>
 
 <!-- RESULTS -->
 <section class="page" id="results">
-  <h2 align="center">Best Places Near You</h2>
-  <div class="card">Sample Place One</div>
-  <div class="card">Sample Place Two</div>
+  <h2 align="center">Popular Places in India</h2>
+
+  <div class="card">
+    <strong>Taj Mahal – Agra</strong><br>
+    Mughal-era marble monument, UNESCO World Heritage Site.
+  </div>
+
+  <div class="card">
+    <strong>Meenakshi Temple – Madurai</strong><br>
+    Ancient South Indian temple known for sculptures.
+  </div>
+
+  <div class="card">
+    <strong>Gateway of India – Mumbai</strong><br>
+    Iconic waterfront monument built during British rule.
+  </div>
+
   <button class="full" onclick="go('thankyou')">Continue</button>
 </section>
 
 <!-- THANK YOU -->
 <section class="page" id="thankyou">
   <h2 align="center">Thank You</h2>
-  <p align="center" style="color:var(--muted)">
-    Thanks for using GaliGyan
-  </p>
+  <p align="center" style="color:var(--muted)">Rate your experience</p>
+
+  <div class="stars" align="center">
+    <span onclick="rate(this)">★</span>
+    <span onclick="rate(this)">★</span>
+    <span onclick="rate(this)">★</span>
+    <span onclick="rate(this)">★</span>
+    <span onclick="rate(this)">★</span>
+  </div>
+
+  <br>
   <button class="full" onclick="go('hero')">Back to Home</button>
 </section>
 
@@ -190,11 +171,7 @@ function go(id){
   document.getElementById(id).classList.add('active');
 }
 
-function toggleTheme(){
-  document.body.classList.toggle('dark');
-}
-
-/* Hero images */
+/* hero images */
 const hero=document.getElementById("hero");
 const imgs=[
  "https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
@@ -207,6 +184,15 @@ setInterval(()=>{
   i=(i+1)%imgs.length;
   hero.style.backgroundImage=url(${imgs[i]});
 },4000);
+
+/* rating */
+function rate(el){
+  const stars=[...el.parentNode.children];
+  stars.forEach(s=>s.classList.remove("active"));
+  for(let i=0;i<=stars.indexOf(el);i++){
+    stars[i].classList.add("active");
+  }
+}
 </script>
 
 </body>
