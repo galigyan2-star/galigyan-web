@@ -69,11 +69,68 @@ body{
   font-size:13px;
   opacity:0.85;
 }
+
+/* ---------- SERVICES ---------- */
+.services{
+  padding:60px 20px;
+  background:#fff7e6;
+}
+
+.services h2{
+  font-size:34px;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.services p{
+  text-align:center;
+  max-width:600px;
+  margin:0 auto 40px;
+  color:#555;
+}
+
+.service-card{
+  background:white;
+  border-radius:18px;
+  padding:22px;
+  margin:18px auto;
+  max-width:420px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.icon-box{
+  width:56px;
+  height:56px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  color:white;
+  margin-bottom:12px;
+}
+
+.travel{background:linear-gradient(135deg,#2196f3,#21cbf3);}
+.hotel{background:linear-gradient(135deg,#9c27b0,#e040fb);}
+.spiritual{background:linear-gradient(135deg,#ff9800,#ff5722);}
+.food{background:linear-gradient(135deg,#4caf50,#8bc34a);}
+.shopping{background:linear-gradient(135deg,#e91e63,#ff6090);}
+
+.service-card h3{
+  font-size:20px;
+  margin-bottom:6px;
+}
+
+.service-card span{
+  color:#666;
+  font-size:14px;
+}
 </style>
 </head>
 
 <body>
 
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-content">
     <h1>Discover Incredible India with GaliGyan</h1>
@@ -83,6 +140,42 @@ body{
     </p>
     <button>Explore Now</button>
     <div class="creator">Created by Aman Kumar Mishra</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <h2>What Would You Like to Explore?</h2>
+  <p>Select a category to discover amazing places near you</p>
+
+  <div class="service-card">
+    <div class="icon-box travel">📍</div>
+    <h3>Travel Spots</h3>
+    <span>Discover scenic destinations and tourist attractions</span>
+  </div>
+
+  <div class="service-card">
+    <div class="icon-box hotel">🏨</div>
+    <h3>Hotels & Stays</h3>
+    <span>Find comfortable accommodations and rest houses</span>
+  </div>
+
+  <div class="service-card">
+    <div class="icon-box spiritual">🛕</div>
+    <h3>Spiritual Places</h3>
+    <span>Visit temples, mosques, churches and sacred sites</span>
+  </div>
+
+  <div class="service-card">
+    <div class="icon-box food">🍽</div>
+    <h3>Restaurants</h3>
+    <span>Explore the best dining and food experiences</span>
+  </div>
+
+  <div class="service-card">
+    <div class="icon-box shopping">🛍</div>
+    <h3>Shopping Areas</h3>
+    <span>Explore malls and popular shopping destinations</span>
   </div>
 </section>
 
