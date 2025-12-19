@@ -6,141 +6,214 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-  *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-  }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-  body{
-    font-family:'Poppins', sans-serif;
-    overflow:hidden;
-    background:#f4f1ea;
-  }
+body{
+  font-family:'Poppins', sans-serif;
+  overflow:hidden;
+  background:#f4f1ea;
+}
 
-  /* PAGE SYSTEM */
-  .page{
-    display:none;
-    width:100vw;
-    height:100vh;
-  }
+/* PAGE SYSTEM */
+.page{
+  display:none;
+  width:100vw;
+  height:100vh;
+}
 
-  .page.active{
-    display:flex;
-    flex-direction:column;
-  }
+.page.active{
+  display:flex;
+  flex-direction:column;
+}
 
-  /* ---------- INTRO PAGE ---------- */
-  .intro{
-    background-size:cover;
-    background-position:center;
-    justify-content:space-between;
-    align-items:center;
-    color:white;
-    position:relative;
-  }
+/* ---------- INTRO ---------- */
+.intro{
+  background-size:cover;
+  background-position:center;
+  justify-content:space-between;
+  align-items:center;
+  color:white;
+  position:relative;
+}
 
-  .intro::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.45);
-  }
+.intro::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+}
 
-  .title{
-    position:relative;
-    margin-top:25px;
-    font-size:38px;
-    font-weight:600;
-    z-index:2;
-  }
+.title{
+  position:relative;
+  margin-top:25px;
+  font-size:38px;
+  font-weight:600;
+  z-index:2;
+}
 
-  .center{
-    position:relative;
-    z-index:2;
-  }
+.center{
+  position:relative;
+  z-index:2;
+}
 
-  .explore-btn{
-    padding:16px 38px;
-    font-size:18px;
-    border:none;
-    border-radius:40px;
-    background:linear-gradient(90deg,#2ecc71,#27ae60);
-    color:white;
-    cursor:pointer;
-  }
+.explore-btn{
+  padding:16px 38px;
+  font-size:18px;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(90deg,#2ecc71,#27ae60);
+  color:white;
+  cursor:pointer;
+}
 
-  .footer{
-    position:relative;
-    z-index:2;
-    margin-bottom:20px;
-    font-size:14px;
-    opacity:0.85;
-  }
+.footer{
+  position:relative;
+  z-index:2;
+  margin-bottom:20px;
+  font-size:14px;
+  opacity:0.85;
+}
 
-  /* ---------- SERVICES PAGE ---------- */
-  .services{
-    padding:20px;
-    background:#f4f1ea;
-  }
+/* ---------- COMMON ---------- */
+.home-btn{
+  font-size:20px;
+  cursor:pointer;
+  margin-bottom:15px;
+}
 
-  .home-btn{
-    font-size:20px;
-    cursor:pointer;
-    margin-bottom:10px;
-  }
+/* ---------- SERVICES ---------- */
+.services{
+  padding:20px;
+  background:#f4f1ea;
+}
 
-  .services h2{
-    text-align:center;
-    margin-bottom:15px;
-    font-size:26px;
-    color:#2c2c2c;
-  }
+.services h2{
+  text-align:center;
+  margin-bottom:15px;
+  font-size:26px;
+  color:#2c2c2c;
+}
 
-  .service-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:15px;
-    margin-top:10px;
-  }
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
+}
 
-  .service-card{
-    height:180px;
-    border-radius:18px;
-    color:white;
-    position:relative;
-    cursor:pointer;
-    background-size:cover;
-    background-position:center;
-    overflow:hidden;
-  }
+.service-card{
+  height:180px;
+  border-radius:18px;
+  color:white;
+  position:relative;
+  cursor:pointer;
+  background-size:cover;
+  background-position:center;
+  overflow:hidden;
+}
 
-  .service-card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.45);
-  }
+.service-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+}
 
-  .service-content{
-    position:absolute;
-    bottom:12px;
-    left:12px;
-    right:12px;
-    z-index:2;
-  }
+.service-content{
+  position:absolute;
+  bottom:12px;
+  left:12px;
+  right:12px;
+  z-index:2;
+}
 
-  .service-content h3{
-    font-size:16px;
-    margin-bottom:4px;
-  }
+.service-content h3{
+  font-size:16px;
+}
 
-  .rating{
-    font-size:14px;
-    color:gold;
-  }
+.rating{
+  font-size:14px;
+  color:gold;
+}
+
+/* ---------- LOCATION PAGE ---------- */
+.location{
+  padding:25px;
+  background:#eef3ee;
+}
+
+.location h2{
+  text-align:center;
+  margin:20px 0;
+}
+
+.location-box{
+  background:white;
+  border-radius:20px;
+  padding:25px;
+  max-width:420px;
+  margin:0 auto;
+}
+
+.location-input{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border:1px solid #ccc;
+  border-radius:12px;
+  padding:12px;
+}
+
+.location-input input{
+  border:none;
+  outline:none;
+  width:100%;
+  font-size:14px;
+}
+
+.gps-btn{
+  cursor:pointer;
+  font-size:18px;
+}
+
+.radius{
+  margin-top:20px;
+}
+
+.radius-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+}
+
+.radius input{
+  width:100%;
+  margin-top:10px;
+}
+
+.within{
+  text-align:center;
+  margin-top:12px;
+  font-size:13px;
+  opacity:0.7;
+}
+
+.continue-btn{
+  margin-top:20px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,#2ecc71,#27ae60);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -164,13 +237,13 @@
 
 <!-- PAGE 2 : SERVICES -->
 <section class="page services" id="page-services">
-  <div class="home-btn" id="homeBtn">🏠 Home</div>
+  <div class="home-btn" id="homeBtn1">🏠 Home</div>
 
   <h2>What do you want to explore?</h2>
 
   <div class="service-grid">
 
-    <div class="service-card" data-next="next"
+    <div class="service-card"
       style="background-image:url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da')">
       <div class="service-content">
         <h3>Best Places</h3>
@@ -213,49 +286,84 @@
   </div>
 </section>
 
+<!-- PAGE 3 : LOCATION -->
+<section class="page location" id="page-location">
+  <div class="home-btn" id="homeBtn2">🏠 Home</div>
+
+  <h2>Where are you right now?</h2>
+
+  <div class="location-box">
+
+    <div class="location-input">
+      <input type="text" placeholder="Enter your location">
+      <div class="gps-btn">📍</div>
+    </div>
+
+    <div class="radius">
+      <div class="radius-label">
+        <span>10 m</span>
+        <span>♾</span>
+      </div>
+      <input type="range" min="10" max="100" value="10">
+    </div>
+
+    <div class="within">Within India</div>
+
+    <button class="continue-btn">Continue</button>
+  </div>
+</section>
+
 <script>
-  /* CLICK SOUND */
-  var clickSound = document.getElementById("clickSound");
-  function playClick(){
-    clickSound.currentTime = 0;
-    clickSound.play();
+/* CLICK SOUND */
+var clickSound=document.getElementById("clickSound");
+function playClick(){
+  clickSound.currentTime=0;
+  clickSound.play();
+}
+
+/* PAGE SWITCH */
+function showPage(id){
+  var pages=document.getElementsByClassName("page");
+  for(var i=0;i<pages.length;i++){
+    pages[i].classList.remove("active");
   }
+  document.getElementById(id).classList.add("active");
+}
 
-  /* PAGE SWITCH */
-  function showPage(id){
-    var pages = document.getElementsByClassName("page");
-    for(var i=0;i<pages.length;i++){
-      pages[i].classList.remove("active");
-    }
-    document.getElementById(id).classList.add("active");
-  }
+/* INTRO IMAGE ROTATION */
+var intro=document.getElementById("page-intro");
+var images=[
+  "https://images.unsplash.com/photo-1564507592333-c60657eea523",
+  "https://images.unsplash.com/photo-1506466010722-395aa2bef877",
+  "https://images.unsplash.com/photo-1548013146-72479768bada"
+];
+var idx=0;
+intro.style.backgroundImage="url("+images[0]+")";
+setInterval(function(){
+  idx++; if(idx>=images.length){idx=0;}
+  intro.style.backgroundImage="url("+images[idx]+")";
+},4000);
 
-  /* INTRO IMAGE ROTATION */
-  var intro = document.getElementById("page-intro");
-  var images = [
-    "https://images.unsplash.com/photo-1564507592333-c60657eea523",
-    "https://images.unsplash.com/photo-1506466010722-395aa2bef877",
-    "https://images.unsplash.com/photo-1548013146-72479768bada"
-  ];
-  var i = 0;
-  intro.style.backgroundImage = "url(" + images[0] + ")";
+/* EVENTS */
+document.getElementById("exploreBtn").onclick=function(){
+  playClick(); showPage("page-services");
+};
 
-  setInterval(function(){
-    i++;
-    if(i >= images.length){ i = 0; }
-    intro.style.backgroundImage = "url(" + images[i] + ")";
-  },4000);
+document.getElementById("homeBtn1").onclick=function(){
+  playClick(); showPage("page-intro");
+};
 
-  /* EVENTS */
-  document.getElementById("exploreBtn").onclick = function(){
-    playClick();
-    showPage("page-services");
+document.getElementById("homeBtn2").onclick=function(){
+  playClick(); showPage("page-intro");
+};
+
+/* SERVICE → LOCATION */
+var services=document.getElementsByClassName("service-card");
+for(var s=0;s<services.length;s++){
+  services[s].onclick=function(){
+    playClick(); showPage("page-location");
   };
-
-  document.getElementById("homeBtn").onclick = function(){
-    playClick();
-    showPage("page-intro");
-  };
+}
 </script>
 
 </body>
