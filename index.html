@@ -1,31 +1,146 @@
-<script>
-function go(id){
-  document.querySelectorAll('.page').forEach(function(p){
-    p.classList.remove('active');
-  });
-  document.getElementById(id).classList.add('active');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Galigyan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#fff6e5;
+}
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+
+#hero{
+  min-height:100vh;
+  background-size:cover;
+  background-position:center;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+#hero h1{font-size:44px;margin:0;}
+#hero p{max-width:600px;font-size:18px;}
+
+button{
+  padding:14px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+  margin-top:20px;
 }
 
-var hero = document.getElementById("hero");
-var imgs = [
-  "https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
-  "https://images.unsplash.com/photo-1548013146-72479768bada",
-  "https://images.unsplash.com/photo-1506466010722-395aa2bef877"
-];
+.content{
+  padding:40px;
+  text-align:center;
+}
 
-var i = 0;
-hero.style.backgroundImage = "url(" + imgs[0] + ")";
+.card{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  margin:15px auto;
+  max-width:500px;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
 
-setInterval(function(){
-  i = (i + 1) % imgs.length;
-  hero.style.backgroundImage = "url(" + imgs[i] + ")";
-}, 4000);
+.rating span{
+  font-size:32px;
+  cursor:pointer;
+  color:#ccc;
+}
+.rating span.active{color:gold;}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div class="page active" id="home">
+  <div id="hero">
+    <h1>Galigyan</h1>
+    <p>Your trusted guide to India’s travel spots, hotels & spiritual places</p>
+    <button onclick="goPage('explore')">Explore Now</button>
+    <p style="margin-top:40px;font-size:14px;">Created by Aman Kumar Mishra</p>
+  </div>
+</div>
+
+<!-- EXPLORE -->
+<div class="page" id="explore">
+  <div class="content">
+    <h2>Explore India</h2>
+
+    <div class="card">📍 Taj Mahal – Agra</div>
+    <div class="card">📍 Golden Temple – Amritsar</div>
+    <div class="card">📍 Meenakshi Temple – Madurai</div>
+
+    <button onclick="goPage('thanks')">Continue</button>
+  </div>
+</div>
+
+<!-- THANK YOU -->
+<div class="page" id="thanks">
+  <div class="content">
+    <h2>Thank You for Visiting Galigyan</h2>
+    <p>Rate your experience</p>
+
+    <div class="rating">
+      <span onclick="rate(this)">★</span>
+      <span onclick="rate(this)">★</span>
+      <span onclick="rate(this)">★</span>
+      <span onclick="rate(this)">★</span>
+      <span onclick="rate(this)">★</span>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT (SAFE, NO ERRORS) -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const hero = document.getElementById("hero");
+  if(hero){
+    const images = [
+      "https://images.unsplash.com/photo-1564507592333-c60657eea523",
+      "https://images.unsplash.com/photo-1587474260584-136574528ed5",
+      "https://images.unsplash.com/photo-1548013146-72479768bada"
+    ];
+    let i = 0;
+    hero.style.backgroundImage = url(${images[0]});
+    setInterval(() => {
+      i = (i + 1) % images.length;
+      hero.style.backgroundImage = url(${images[i]});
+    }, 4000);
+  }
+
+});
+
+function goPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
 
 function rate(el){
-  var stars = document.querySelectorAll('.rating span');
-  stars.forEach(function(s){
-    s.classList.remove('active');
-  });
-  el.classList.add('active');
+  const stars = document.querySelectorAll(".rating span");
+  stars.forEach(s=>s.classList.remove("active"));
+  el.classList.add("active");
+  let prev = el.previousElementSibling;
+  while(prev){
+    prev.classList.add("active");
+    prev = prev.previousElementSibling;
+  }
 }
 </script>
+
+</body>
+</html>
