@@ -26,7 +26,7 @@ body{
   overflow:hidden;
 }
 
-/* ---------- PAGE SLIDE SYSTEM ---------- */
+/* -------- SLIDE SYSTEM -------- */
 section{
   position:absolute;
   inset:0;
@@ -42,7 +42,7 @@ section{
 section.active{ transform:translateX(0); }
 section.left{ transform:translateX(-100%); }
 
-/* ---------- COMMON ---------- */
+/* -------- COMMON -------- */
 button{
   padding:12px 26px;
   border:none;
@@ -53,15 +53,16 @@ button{
   cursor:pointer;
 }
 
-h1{ font-size:52px; margin:10px 0; }
+h1{ font-size:50px; margin:10px 0; }
 h2{ font-size:34px; margin-bottom:10px; }
+
 p{
   max-width:520px;
   text-align:center;
   line-height:1.6;
 }
 
-/* ---------- INTRO ---------- */
+/* -------- INTRO -------- */
 #intro{
   background-size:cover;
   background-position:center;
@@ -76,13 +77,12 @@ p{
 
 .creator{
   display:block;
-  margin-top:18px;
+  margin-top:16px;
   font-size:13px;
   opacity:.7;
-  letter-spacing:.6px;
 }
 
-/* ---------- SERVICES ---------- */
+/* -------- SERVICES -------- */
 .cards{
   display:flex;
   gap:22px;
@@ -114,7 +114,7 @@ p{
   margin-bottom:10px;
 }
 
-/* ---------- LOCATION ---------- */
+/* -------- LOCATION -------- */
 .input-box{
   display:flex;
   align-items:center;
@@ -133,7 +133,7 @@ input{
   margin-top:20px;
 }
 
-/* ---------- THANK YOU ---------- */
+/* -------- THANK YOU -------- */
 #thankyou{
   background:url("https://images.unsplash.com/photo-1524492412937-b28074a5d7da") center/cover;
 }
@@ -149,7 +149,7 @@ input{
 
 <body>
 
-<!-- INTRO PAGE -->
+<!-- INTRO -->
 <section id="intro" class="active">
   <div class="intro-box">
     <h1>GaliGyan</h1>
@@ -162,7 +162,7 @@ input{
   </div>
 </section>
 
-<!-- SERVICES PAGE -->
+<!-- SERVICES -->
 <section id="services">
   <h2>Our Services</h2>
   <div class="cards">
@@ -189,9 +189,10 @@ input{
   </div>
 </section>
 
-<!-- LOCATION PAGE -->
+<!-- LOCATION -->
 <section id="location">
   <h2>Select Location</h2>
+
   <div class="input-box">
     <span>📍</span>
     <input placeholder="Enter city or area (e.g. Delhi)">
@@ -199,13 +200,14 @@ input{
 
   <input type="range" min="1" max="100" value="10"
          class="slider"
-         oninput="radiusText.innerText=this.value+' km'">
+         oninput="document.getElementById('radiusText').innerText=this.value+' km'">
+
   <p id="radiusText">10 km</p>
 
   <button onclick="go('results')">Show Results</button>
 </section>
 
-<!-- RESULTS PAGE -->
+<!-- RESULTS -->
 <section id="results">
   <h2>Best Matches</h2>
   <div class="cards">
@@ -221,45 +223,50 @@ input{
   <button onclick="go('thankyou')">Continue</button>
 </section>
 
-<!-- THANK YOU PAGE -->
+<!-- THANK YOU -->
 <section id="thankyou">
   <div class="thank-box">
     <h2>Thank You</h2>
-    <p>
-      We hope GaliGyan helped you explore India in a better way.
-    </p>
+    <p>We hope GaliGyan helped you explore India better.</p>
     <button onclick="go('intro')">Back to Home</button>
   </div>
 </section>
 
 <script>
-/* ---------- PAGE SLIDE LOGIC ---------- */
-let current="intro";
+/* -------- PAGE NAVIGATION -------- */
+let current = "intro";
 
 function go(id){
-  const curr=document.getElementById(current);
-  const next=document.getElementById(id);
+  const curr = document.getElementById(current);
+  const next = document.getElementById(id);
+  if(!curr || !next) return;
+
   curr.classList.add("left");
   next.classList.add("active");
 
   setTimeout(()=>{
     curr.classList.remove("active","left");
-    current=id;
+    current = id;
   },600);
 }
 
-/* ---------- INTRO BACKGROUND ROTATION ---------- */
-const intro=document.getElementById("intro");
-const images=[
+/* -------- INTRO BACKGROUND ROTATION -------- */
+const intro = document.getElementById("intro");
+
+const bgImages = [
   "https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
   "https://images.unsplash.com/photo-1501117716987-c8e1ecb210b7",
   "https://images.unsplash.com/photo-1548013146-72479768bada"
 ];
-let i=0;
 
-setInterval(()=>{
-  intro.style.backgroundImage=url(${images[i%images.length]});
-  i++;
+let bgIndex = 0;
+
+setInterval(function(){
+  if(intro){
+    intro.style.backgroundImage =
+      "url(" + bgImages[bgIndex % bgImages.length] + ")";
+    bgIndex++;
+  }
 },3500);
 </script>
 
