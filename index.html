@@ -40,7 +40,7 @@ body{
   text-align:center;
   color:white;
   padding:20px;
-  max-width:700px;
+  max-width:720px;
 }
 
 .hero h1{
@@ -55,7 +55,7 @@ body{
 }
 
 .hero button{
-  padding:14px 30px;
+  padding:14px 32px;
   font-size:16px;
   border:none;
   border-radius:30px;
@@ -138,13 +138,13 @@ body{
       Your trusted guide to India’s best travel destinations,
       hotels, spiritual places, food spots and shopping areas.
     </p>
-    <button>Explore Now</button>
+    <button onclick="goExplore()">Explore Now →</button>
     <div class="creator">Created by Aman Kumar Mishra</div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section class="services">
+<section class="services" id="services">
   <h2>What Would You Like to Explore?</h2>
   <p>Select a category to discover amazing places near you</p>
 
@@ -180,7 +180,7 @@ body{
 </section>
 
 <script>
-/* ---------- HERO IMAGE ROTATION (SAFE) ---------- */
+/* ---------- HERO IMAGE ROTATION ---------- */
 const hero=document.getElementById("hero");
 
 const images=[
@@ -197,6 +197,17 @@ setInterval(function(){
   index=(index+1)%images.length;
   hero.style.backgroundImage="url("+images[index]+")";
 },4000);
+
+/* ---------- EXPLORE BUTTON SCROLL ---------- */
+function goExplore(){
+  const section=document.getElementById("services");
+  if(section){
+    section.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+  }
+}
 </script>
 
 </body>
