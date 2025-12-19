@@ -125,6 +125,81 @@ body{
   color:#666;
   font-size:14px;
 }
+
+/* ---------- LOCATION ---------- */
+.location{
+  padding:70px 20px;
+  background:#f6f3ec;
+}
+
+.location h2{
+  text-align:center;
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+.location p{
+  text-align:center;
+  color:#555;
+  margin-bottom:30px;
+}
+
+.location-box{
+  max-width:420px;
+  margin:0 auto;
+  background:white;
+  border-radius:22px;
+  padding:30px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.location-input{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border:1px solid #ddd;
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:25px;
+}
+
+.location-input span{
+  font-size:18px;
+}
+
+.location-input input{
+  border:none;
+  outline:none;
+  font-size:15px;
+  width:100%;
+}
+
+.radius-label{
+  font-size:14px;
+  margin-bottom:8px;
+  color:#444;
+}
+
+.range{
+  width:100%;
+}
+
+.radius-value{
+  text-align:center;
+  margin:12px 0 22px;
+  font-weight:bold;
+}
+
+.location button{
+  width:100%;
+  padding:14px;
+  font-size:16px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,#ff7a18,#ff006e);
+  color:white;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -179,6 +254,28 @@ body{
   </div>
 </section>
 
+<!-- LOCATION -->
+<section class="location" id="location">
+  <h2>Where are you right now?</h2>
+  <p>Enter your location and choose search radius</p>
+
+  <div class="location-box">
+    <div class="location-input">
+      <span>📍</span>
+      <input type="text" placeholder="Enter city or area (e.g. Delhi)">
+    </div>
+
+    <div class="radius-label">Search radius</div>
+    <input type="range" min="1" max="100" value="10"
+      class="range"
+      oninput="document.getElementById('radiusVal').innerText=this.value+' km'">
+
+    <div class="radius-value" id="radiusVal">10 km</div>
+
+    <button>Find Places</button>
+  </div>
+</section>
+
 <script>
 /* ---------- HERO IMAGE ROTATION ---------- */
 const hero=document.getElementById("hero");
@@ -198,14 +295,11 @@ setInterval(function(){
   hero.style.backgroundImage="url("+images[index]+")";
 },4000);
 
-/* ---------- EXPLORE BUTTON SCROLL ---------- */
+/* ---------- SCROLL ---------- */
 function goExplore(){
   const section=document.getElementById("services");
   if(section){
-    section.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
+    section.scrollIntoView({behavior:"smooth"});
   }
 }
 </script>
