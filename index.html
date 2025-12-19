@@ -1,147 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Galigyan</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Galigyan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style>
-body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#fff6e5;
-}
-.page{display:none;min-height:100vh;}
-.page.active{display:block;}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff6e5;
+    }
 
-#hero{
-  min-height:100vh;
-  background-size:cover;
-  background-position:center;
-  color:white;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
-}
-#hero h1{font-size:44px;margin:0;}
-#hero p{max-width:600px;font-size:18px;}
+    .page {
+      display: none;
+      min-height: 100vh;
+      text-align: center;
+      padding: 40px;
+    }
 
-button{
-  padding:14px 30px;
-  font-size:18px;
-  border:none;
-  border-radius:10px;
-  background:#2563eb;
-  color:white;
-  cursor:pointer;
-  margin-top:20px;
-}
+    .active {
+      display: block;
+    }
 
-.content{
-  padding:40px;
-  text-align:center;
-}
+    #hero {
+      min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-.card{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  margin:15px auto;
-  max-width:500px;
-  box-shadow:0 4px 12px rgba(0,0,0,.1);
-}
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
 
-.rating span{
-  font-size:32px;
-  cursor:pointer;
-  color:#ccc;
-}
-.rating span.active{color:gold;}
-</style>
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 15px auto;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .rating span {
+      font-size: 30px;
+      cursor: pointer;
+      color: #ccc;
+    }
+
+    .rating .active {
+      color: gold;
+    }
+  </style>
 </head>
 
 <body>
 
 <!-- HOME -->
-<div class="page active" id="home">
+<div id="home" class="page active">
   <div id="hero">
     <h1>Galigyan</h1>
-    <p>Your trusted guide to India’s travel spots, hotels & spiritual places</p>
+    <p>Your trusted guide to India</p>
     <button id="exploreBtn">Explore Now</button>
     <p style="margin-top:40px;font-size:14px;">Created by Aman Kumar Mishra</p>
   </div>
 </div>
 
 <!-- EXPLORE -->
-<div class="page" id="explore">
-  <div class="content">
-    <h2>Explore India</h2>
+<div id="explore" class="page">
+  <h2>Explore India</h2>
 
-    <div class="card">📍 Taj Mahal – Agra</div>
-    <div class="card">📍 Golden Temple – Amritsar</div>
-    <div class="card">📍 Meenakshi Temple – Madurai</div>
+  <div class="card">📍 Taj Mahal – Agra</div>
+  <div class="card">📍 Golden Temple – Amritsar</div>
+  <div class="card">📍 Meenakshi Temple – Madurai</div>
 
-    <button id="continueBtn">Continue</button>
-  </div>
+  <button id="continueBtn">Continue</button>
 </div>
 
 <!-- THANK YOU -->
-<div class="page" id="thanks">
-  <div class="content">
-    <h2>Thank You for Visiting Galigyan</h2>
-    <p>Rate your experience</p>
+<div id="thanks" class="page">
+  <h2>Thank You</h2>
+  <p>Rate your experience</p>
 
-    <div class="rating" id="rating">
-      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-    </div>
+  <div class="rating" id="rating">
+    <span>★</span>
+    <span>★</span>
+    <span>★</span>
+    <span>★</span>
+    <span>★</span>
   </div>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-
-  const pages = document.querySelectorAll(".page");
-
-  function showPage(id){
-    pages.forEach(p => p.classList.remove("active"));
+  // page switch
+  function showPage(id) {
+    var pages = document.getElementsByClassName("page");
+    for (var i = 0; i < pages.length; i++) {
+      pages[i].classList.remove("active");
+    }
     document.getElementById(id).classList.add("active");
   }
 
-  document.getElementById("exploreBtn").addEventListener("click", () => {
+  document.getElementById("exploreBtn").onclick = function () {
     showPage("explore");
-  });
+  };
 
-  document.getElementById("continueBtn").addEventListener("click", () => {
+  document.getElementById("continueBtn").onclick = function () {
     showPage("thanks");
-  });
+  };
 
-  const hero = document.getElementById("hero");
-  const images = [
+  // hero images
+  var hero = document.getElementById("hero");
+  var images = [
     "https://images.unsplash.com/photo-1564507592333-c60657eea523",
-    "https://images.unsplash.com/photo-1587474260584-136574528ed5",
-    "https://images.unsplash.com/photo-1548013146-72479768bada"
+    "https://images.unsplash.com/photo-1548013146-72479768bada",
+    "https://images.unsplash.com/photo-1587474260584-136574528ed5"
   ];
-  let i = 0;
-  hero.style.backgroundImage = url(${images[0]});
-  setInterval(() => {
-    i = (i + 1) % images.length;
-    hero.style.backgroundImage = url(${images[i]});
+  var index = 0;
+
+  hero.style.backgroundImage = "url(" + images[0] + ")";
+
+  setInterval(function () {
+    index = index + 1;
+    if (index >= images.length) {
+      index = 0;
+    }
+    hero.style.backgroundImage = "url(" + images[index] + ")";
   }, 4000);
 
-  const stars = document.querySelectorAll("#rating span");
-  stars.forEach((star, index) => {
-    star.addEventListener("click", () => {
-      stars.forEach(s => s.classList.remove("active"));
-      for(let j=0;j<=index;j++){
-        stars[j].classList.add("active");
+  // rating
+  var stars = document.getElementById("rating").getElementsByTagName("span");
+  for (var s = 0; s < stars.length; s++) {
+    stars[s].onclick = function () {
+      for (var j = 0; j < stars.length; j++) {
+        stars[j].classList.remove("active");
       }
-    });
-  });
-
-});
+      this.classList.add("active");
+      var prev = this.previousElementSibling;
+      while (prev) {
+        prev.classList.add("active");
+        prev = prev.previousElementSibling;
+      }
+    };
+  }
 </script>
 
 </body>
