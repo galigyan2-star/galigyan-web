@@ -4,201 +4,102 @@
 <meta charset="UTF-8">
 <title>Galigyan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
 *{margin:0;padding:0;box-sizing:border-box}
-
-body{
-  font-family:'Poppins', sans-serif;
-  overflow:hidden;
-  background:#f4f1ea;
-}
-
-/* PAGE SYSTEM */
-.page{display:none;width:100vw;height:100vh}
-.page.active{display:flex;flex-direction:column}
-
+body{font-family:'Poppins',sans-serif;overflow:hidden;background:#f4f1ea;}
+.page{display:none;width:100vw;height:100vh;}
+.page.active{display:flex;flex-direction:column;}
 /* INTRO */
 .intro{
-  background-size:cover;
-  background-position:center;
-  justify-content:space-between;
-  align-items:center;
-  color:white;
-  position:relative;
+  background-size:cover;background-position:center;
+  justify-content:center;align-items:center;color:white;position:relative;text-align:center;
 }
-.intro::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.45);
-}
-
-/* INTERACTIVE LOGO */
+.intro::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);}
 .title{
-  position:relative;
-  margin-top:25px;
-  font-size:40px;
-  font-weight:600;
-  z-index:2;
-  cursor:pointer;
-  transition:.3s ease;
+  position:relative;font-size:42px;font-weight:600;z-index:2;cursor:pointer;
+  transition:.3s ease;margin-bottom:20px;
 }
-.title:hover{
-  transform:scale(1.05);
-  text-shadow:0 0 15px rgba(255,255,255,.6);
-}
-
-.center{position:relative;z-index:2}
+.title:hover{transform:scale(1.05);text-shadow:0 0 15px rgba(255,255,255,.6);}
 .explore-btn{
-  padding:16px 38px;
-  font-size:18px;
-  border:none;
-  border-radius:40px;
-  background:linear-gradient(90deg,#2ecc71,#27ae60);
-  color:white;
-  cursor:pointer;
+  position:relative;z-index:2;padding:16px 40px;font-size:18px;
+  border:none;border-radius:40px;background:linear-gradient(90deg,#2ecc71,#27ae60);
+  color:white;cursor:pointer;
 }
-
 /* COMMON */
-.home-btn{
-  font-size:20px;
-  cursor:pointer;
-  margin:15px;
-}
-
+.home-btn{font-size:20px;cursor:pointer;margin:15px;}
 /* SERVICES */
-.services{padding:20px}
-.services h2{text-align:center;margin-bottom:15px;font-size:26px}
-.service-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:15px;
+.services{padding:25px;align-items:center;background:#f4f1ea;}
+.services h2{text-align:center;margin:10px;font-size:26px;}
+.service-list{display:flex;flex-direction:column;gap:12px;width:100%;max-width:420px;}
+.service-item{
+  height:100px;border-radius:15px;color:white;position:relative;
+  background-size:cover;background-position:center;cursor:pointer;overflow:hidden;
 }
-.service-card{
-  height:180px;
-  border-radius:18px;
-  color:white;
-  position:relative;
-  cursor:pointer;
-  background-size:cover;
-  background-position:center;
-}
-.service-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.45);
-}
-.service-content{
-  position:absolute;
-  bottom:12px;
-  left:12px;
-  z-index:2;
-}
-.rating{color:gold;font-size:14px}
-
+.service-item::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);}
+.service-item h3{position:absolute;bottom:10px;left:15px;z-index:2;font-size:18px;}
+.rating{position:absolute;bottom:10px;right:15px;z-index:2;color:gold;font-size:14px;}
 /* LOCATION */
-.location{padding:25px;background:#eef3ee}
-.location h2{text-align:center;margin:15px}
-.location-box{
-  background:white;
-  border-radius:20px;
-  padding:25px;
-  max-width:420px;
-  margin:0 auto;
-}
-.location-input{
-  display:flex;
-  gap:10px;
-  border:1px solid #ccc;
-  border-radius:12px;
-  padding:12px;
-}
-.location-input input{border:none;outline:none;width:100%}
-
-/* SLIDER */
-.radius{margin-top:20px}
-.radius-value{
-  text-align:center;
-  font-size:14px;
-  margin-bottom:8px;
-  font-weight:600;
-}
-.radius input{width:100%}
-
+.location{padding:25px;background:#eef3ee;}
+.location h2{text-align:center;margin:15px;}
+.location-box{background:white;border-radius:20px;padding:25px;max-width:420px;margin:0 auto;}
+.location-input{display:flex;gap:10px;border:1px solid #ccc;border-radius:12px;padding:12px;}
+.location-input input{border:none;outline:none;width:100%;}
+.radius{margin-top:20px;}
+.radius-value{text-align:center;font-size:14px;margin-bottom:8px;font-weight:600;}
+.radius input{width:100%;}
 .continue-btn{
-  margin-top:20px;
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(90deg,#2ecc71,#27ae60);
-  color:white;
-  cursor:pointer;
+  margin-top:20px;width:100%;padding:14px;border:none;border-radius:30px;
+  background:linear-gradient(90deg,#2ecc71,#27ae60);color:white;cursor:pointer;
 }
-
 /* RESULTS */
-.results{padding:20px}
-.results h2{text-align:center}
-.note{text-align:center;font-size:13px;opacity:.7;margin-bottom:15px}
-.result-card{
-  background:white;
-  border-radius:16px;
-  padding:15px;
-  margin-bottom:12px;
-}
-
+.results{padding:20px;}
+.results h2{text-align:center;}
+.note{text-align:center;font-size:13px;opacity:.7;margin-bottom:15px;}
+.result-card{background:white;border-radius:16px;padding:15px;margin-bottom:12px;}
 /* THANK YOU */
 .thankyou{
-  justify-content:space-between;
-  padding:30px;
-  text-align:center;
+  justify-content:center;align-items:center;text-align:center;
+  background:linear-gradient(180deg,#f0f9f4,#c8f1d3);
+  animation:fadein .8s ease;
 }
-.stars span{
-  font-size:30px;
-  cursor:pointer;
-  color:#ccc;
-}
-.stars span.active{color:gold}
-.creator{
-  font-size:13px;
-  opacity:.7;
-  margin-bottom:20px;
-}
+@keyframes fadein{from{opacity:0;}to{opacity:1;}}
+.thankyou h2{font-size:26px;margin-bottom:10px;}
+.stars span{font-size:30px;cursor:pointer;color:#ccc;}
+.stars span.active{color:gold;}
+.appreciation{margin-top:8px;font-size:14px;opacity:.8;}
+.creator{font-size:13px;opacity:.7;margin-top:25px;}
 </style>
 </head>
-
 <body>
-
-<audio id="clickSound">
-  <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3">
-</audio>
-<audio id="pageSound">
-  <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3">
-</audio>
+<audio id="clickSound"><source src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+<audio id="pageSound"><source src="https://www.soundjay.com/buttons/sounds/button-09.mp3"></audio>
 
 <!-- INTRO -->
 <section class="page intro active" id="p1">
   <div class="title">Galigyan</div>
-  <div class="center">
-    <button class="explore-btn" onclick="goPage('p2')">Explore Now →</button>
-  </div>
+  <button class="explore-btn" onclick="goPage('p2')">Explore Now →</button>
 </section>
 
 <!-- SERVICES -->
 <section class="page services" id="p2">
   <div class="home-btn" onclick="goPage('p1')">🏠 Home</div>
   <h2>What do you want to explore?</h2>
-
-  <div class="service-grid">
-    <div class="service-card" onclick="goPage('p3')" style="background-image:url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da')">
-      <div class="service-content"><h3>Best Places</h3><div class="rating">★★★★★</div></div>
+  <div class="service-list">
+    <div class="service-item" style="background-image:url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da')" onclick="goPage('p3')">
+      <h3>Best Places</h3><div class="rating">★★★★★</div>
     </div>
-    <div class="service-card" onclick="goPage('p3')" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945')">
-      <div class="service-content"><h3>Hotels</h3><div class="rating">★★★★☆</div></div>
+    <div class="service-item" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945')" onclick="goPage('p3')">
+      <h3>Hotels</h3><div class="rating">★★★★☆</div>
+    </div>
+    <div class="service-item" style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada')" onclick="goPage('p3')">
+      <h3>Spiritual</h3><div class="rating">★★★★★</div>
+    </div>
+    <div class="service-item" style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5')" onclick="goPage('p3')">
+      <h3>Restaurants</h3><div class="rating">★★★★☆</div>
+    </div>
+    <div class="service-item" style="background-image:url('https://images.unsplash.com/photo-1521334884684-d80222895322')" onclick="goPage('p3')">
+      <h3>Shopping</h3><div class="rating">★★★★☆</div>
     </div>
   </div>
 </section>
@@ -207,18 +108,14 @@ body{
 <section class="page location" id="p3">
   <div class="home-btn" onclick="goPage('p1')">🏠 Home</div>
   <h2>Where are you right now?</h2>
-
   <div class="location-box">
     <div class="location-input">
-      <input placeholder="Enter your location">
-      <span>📍</span>
+      <input placeholder="Enter your location"><span>📍</span>
     </div>
-
     <div class="radius">
       <div class="radius-value" id="radiusValue">10 m</div>
       <input type="range" min="1" max="6" value="1" oninput="updateRadius(this.value)">
     </div>
-
     <button class="continue-btn" onclick="goPage('p4')">Continue</button>
   </div>
 </section>
@@ -228,63 +125,47 @@ body{
   <div class="home-btn" onclick="goPage('p1')">🏠 Home</div>
   <h2>Best results for you</h2>
   <div class="note">Showing sample results. Real data coming soon.</div>
-
   <div class="result-card"><h4>Taj Mahal</h4>⭐⭐⭐⭐⭐</div>
+  <div class="result-card"><h4>Golden Temple</h4>⭐⭐⭐⭐☆</div>
   <button class="continue-btn" onclick="goPage('p5')">Continue</button>
 </section>
 
 <!-- THANK YOU -->
 <section class="page thankyou" id="p5">
   <div class="home-btn" onclick="goPage('p1')">🏠 Home</div>
-
   <div>
     <h2>Thank you for exploring India with Galigyan 🌏</h2>
+    <p>Your feedback means a lot 💫</p>
     <div class="stars" id="stars">
       <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
     </div>
   </div>
-
   <div class="creator">Created by Aman Kumar Mishra</div>
 </section>
 
 <script>
-var click=document.getElementById("clickSound");
-var page=document.getElementById("pageSound");
-
+const click=document.getElementById("clickSound");
+const page=document.getElementById("pageSound");
 function goPage(id){
-  click.play(); page.play();
+  click.play();page.play();
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
-
-var radiusMap=["10 m","500 m","1 km","10 km","100 km","♾"];
-function updateRadius(val){
-  document.getElementById("radiusValue").innerText=radiusMap[val-1];
-}
-
-/* rating */
-var stars=document.getElementById("stars").children;
+const radiusMap=["10 m","500 m","1 km","10 km","100 km","♾"];
+function updateRadius(v){document.getElementById("radiusValue").innerText=radiusMap[v-1];}
+const stars=document.getElementById("stars").children;
 for(let i=0;i<stars.length;i++){
-  stars[i].onclick=function(){
-    for(let j=0;j<stars.length;j++) stars[j].classList.remove("active");
-    for(let k=0;k<=i;k++) stars[k].classList.add("active");
-  }
+  stars[i].onclick=()=>{for(let j=0;j<stars.length;j++)stars[j].classList.remove("active");
+    for(let k=0;k<=i;k++)stars[k].classList.add("active");};
 }
-
-/* intro images */
-var intro=document.getElementById("p1");
-var imgs=[
+const intro=document.getElementById("p1");
+const imgs=[
   "https://images.unsplash.com/photo-1564507592333-c60657eea523",
   "https://images.unsplash.com/photo-1506466010722-395aa2bef877",
   "https://images.unsplash.com/photo-1548013146-72479768bada"
 ];
-var idx=0;
-intro.style.backgroundImage="url("+imgs[0]+")";
-setInterval(function(){
-  idx=(idx+1)%imgs.length;
-  intro.style.backgroundImage="url("+imgs[idx]+")";
-},4000);
+let idx=0;intro.style.backgroundImage=url(${imgs[0]});
+setInterval(()=>{idx=(idx+1)%imgs.length;intro.style.backgroundImage=url(${imgs[idx]});},4000);
 </script>
-
 </body>
 </html>
