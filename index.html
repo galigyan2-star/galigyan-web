@@ -4,270 +4,87 @@
 <meta charset="UTF-8">
 <title>GaliGyan</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --bg:#f6f3ec;
-  --card:#ffffff;
-  --text:#222;
-  --accent:#ff7a18;
-}
-
-*{
-  box-sizing:border-box;
-}
-
 body{
   margin:0;
-  font-family:'Poppins',sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  font-family:Arial, sans-serif;
+  background:#f6f3ec;
   overflow:hidden;
 }
-
-/* -------- SLIDE SYSTEM -------- */
 section{
   position:absolute;
   inset:0;
   display:flex;
   flex-direction:column;
-  align-items:center;
   justify-content:center;
-  padding:40px;
+  align-items:center;
   transform:translateX(100%);
-  transition:transform .6s ease;
+  transition:0.5s;
 }
+section.active{transform:translateX(0);}
+section.left{transform:translateX(-100%);}
 
-section.active{ transform:translateX(0); }
-section.left{ transform:translateX(-100%); }
-
-/* -------- COMMON -------- */
 button{
-  padding:12px 26px;
+  padding:12px 20px;
   border:none;
-  border-radius:8px;
-  background:var(--accent);
+  background:#ff7a18;
   color:white;
   font-size:16px;
+  border-radius:6px;
   cursor:pointer;
-}
-
-h1{ font-size:50px; margin:10px 0; }
-h2{ font-size:34px; margin-bottom:10px; }
-
-p{
-  max-width:520px;
-  text-align:center;
-  line-height:1.6;
-}
-
-/* -------- INTRO -------- */
-#intro{
-  background-size:cover;
-  background-position:center;
-}
-
-.intro-box{
-  background:rgba(255,255,255,.88);
-  padding:40px 45px;
-  border-radius:18px;
-  text-align:center;
-}
-
-.creator{
-  display:block;
-  margin-top:16px;
-  font-size:13px;
-  opacity:.7;
-}
-
-/* -------- SERVICES -------- */
-.cards{
-  display:flex;
-  gap:22px;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.card{
-  width:220px;
-  padding:18px;
-  border-radius:14px;
-  background:var(--card);
-  text-align:center;
-  cursor:pointer;
-  box-shadow:0 10px 22px rgba(0,0,0,.12);
-  transition:transform .3s ease;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-}
-
-.card img{
-  width:100%;
-  height:120px;
-  object-fit:cover;
-  border-radius:10px;
-  margin-bottom:10px;
-}
-
-/* -------- LOCATION -------- */
-.input-box{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-top:15px;
-}
-
-input{
-  padding:10px;
-  width:260px;
-  font-size:14px;
-}
-
-.slider{
-  width:260px;
-  margin-top:20px;
-}
-
-/* -------- THANK YOU -------- */
-#thankyou{
-  background:url("https://images.unsplash.com/photo-1524492412937-b28074a5d7da") center/cover;
-}
-
-.thank-box{
-  background:rgba(255,255,255,.88);
-  padding:40px;
-  border-radius:18px;
-  text-align:center;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
 <section id="intro" class="active">
-  <div class="intro-box">
-    <h1>GaliGyan</h1>
-    <p>
-      Discover India better — hidden gems, hotels, food spots,
-      spiritual places and shopping areas — all in one place.
-    </p>
-    <button onclick="go('services')">Explore</button>
-    <small class="creator">Created by Aman Kumar Mishra</small>
-  </div>
+  <h1>GaliGyan</h1>
+  <p>Your guide to explore India better</p>
+  <button onclick="go('services')">Explore</button>
+  <small>Created by Aman Kumar Mishra</small>
 </section>
 
-<!-- SERVICES -->
 <section id="services">
-  <h2>Our Services</h2>
-  <div class="cards">
-    <div class="card" onclick="go('location')">
-      <img src="https://images.unsplash.com/photo-1583248369069-9d91f6e2983c">
-      Hidden Gems
-    </div>
-    <div class="card" onclick="go('location')">
-      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945">
-      Hotels & Stays
-    </div>
-    <div class="card" onclick="go('location')">
-      <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5">
-      Spiritual Places
-    </div>
-    <div class="card" onclick="go('location')">
-      <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d">
-      Food Courts
-    </div>
-    <div class="card" onclick="go('location')">
-      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
-      Shopping Areas
-    </div>
-  </div>
+  <h2>Services</h2>
+  <button onclick="go('location')">Choose Location</button>
 </section>
 
-<!-- LOCATION -->
 <section id="location">
-  <h2>Select Location</h2>
-
-  <div class="input-box">
-    <span>📍</span>
-    <input placeholder="Enter city or area (e.g. Delhi)">
-  </div>
-
+  <h2>Location</h2>
+  <input placeholder="Enter city">
+  <br><br>
   <input type="range" min="1" max="100" value="10"
-         class="slider"
-         oninput="document.getElementById('radiusText').innerText=this.value+' km'">
-
-  <p id="radiusText">10 km</p>
-
-  <button onclick="go('results')">Show Results</button>
+    oninput="document.getElementById('r').innerText=this.value">
+  <p>Radius: <span id="r">10</span> km</p>
+  <button onclick="go('results')">Next</button>
 </section>
 
-<!-- RESULTS -->
 <section id="results">
-  <h2>Best Matches</h2>
-  <div class="cards">
-    <div class="card">
-      Sample Place 1
-      <small>Short description here</small>
-    </div>
-    <div class="card">
-      Sample Place 2
-      <small>Short description here</small>
-    </div>
-  </div>
+  <h2>Results</h2>
+  <p>Mock results shown here</p>
   <button onclick="go('thankyou')">Continue</button>
 </section>
 
-<!-- THANK YOU -->
 <section id="thankyou">
-  <div class="thank-box">
-    <h2>Thank You</h2>
-    <p>We hope GaliGyan helped you explore India better.</p>
-    <button onclick="go('intro')">Back to Home</button>
-  </div>
+  <h2>Thank You</h2>
+  <button onclick="go('intro')">Home</button>
 </section>
 
 <script>
-/* -------- PAGE NAVIGATION -------- */
-let current = "intro";
+var current="intro";
 
 function go(id){
-  const curr = document.getElementById(current);
-  const next = document.getElementById(id);
-  if(!curr || !next) return;
-
-  curr.classList.add("left");
-  next.classList.add("active");
-
-  setTimeout(()=>{
-    curr.classList.remove("active","left");
-    current = id;
-  },600);
+  var c=document.getElementById(current);
+  var n=document.getElementById(id);
+  if(!c||!n)return;
+  c.classList.add("left");
+  n.classList.add("active");
+  setTimeout(function(){
+    c.classList.remove("active","left");
+    current=id;
+  },500);
 }
-
-/* -------- INTRO BACKGROUND ROTATION -------- */
-const intro = document.getElementById("intro");
-
-const bgImages = [
-  "https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
-  "https://images.unsplash.com/photo-1501117716987-c8e1ecb210b7",
-  "https://images.unsplash.com/photo-1548013146-72479768bada"
-];
-
-let bgIndex = 0;
-
-setInterval(function(){
-  if(intro){
-    intro.style.backgroundImage =
-      "url(" + bgImages[bgIndex % bgImages.length] + ")";
-    bgIndex++;
-  }
-},3500);
 </script>
 
 </body>
