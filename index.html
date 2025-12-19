@@ -8,11 +8,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:'Poppins', sans-serif;
@@ -26,7 +22,6 @@ body{
   width:100vw;
   height:100vh;
 }
-
 .page.active{
   display:flex;
   flex-direction:column;
@@ -41,14 +36,12 @@ body{
   color:white;
   position:relative;
 }
-
 .intro::before{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0.45);
+  background:rgba(0,0,0,.45);
 }
-
 .title{
   position:relative;
   margin-top:25px;
@@ -56,12 +49,7 @@ body{
   font-weight:600;
   z-index:2;
 }
-
-.center{
-  position:relative;
-  z-index:2;
-}
-
+.center{position:relative;z-index:2}
 .explore-btn{
   padding:16px 38px;
   font-size:18px;
@@ -71,41 +59,41 @@ body{
   color:white;
   cursor:pointer;
 }
-
 .footer{
   position:relative;
   z-index:2;
-  margin-bottom:20px;
+  margin-bottom:30px;
   font-size:14px;
-  opacity:0.85;
+  opacity:.85;
 }
 
 /* ---------- COMMON ---------- */
 .home-btn{
   font-size:20px;
   cursor:pointer;
-  margin-bottom:15px;
+  margin:15px;
+}
+.creator{
+  text-align:center;
+  font-size:13px;
+  opacity:.7;
+  margin-bottom:20px;
 }
 
 /* ---------- SERVICES ---------- */
 .services{
   padding:20px;
-  background:#f4f1ea;
 }
-
 .services h2{
   text-align:center;
   margin-bottom:15px;
   font-size:26px;
-  color:#2c2c2c;
 }
-
 .service-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:15px;
 }
-
 .service-card{
   height:180px;
   border-radius:18px;
@@ -116,14 +104,12 @@ body{
   background-position:center;
   overflow:hidden;
 }
-
 .service-card::before{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0.45);
+  background:rgba(0,0,0,.45);
 }
-
 .service-content{
   position:absolute;
   bottom:12px;
@@ -131,27 +117,14 @@ body{
   right:12px;
   z-index:2;
 }
+.rating{color:gold;font-size:14px}
 
-.service-content h3{
-  font-size:16px;
-}
-
-.rating{
-  font-size:14px;
-  color:gold;
-}
-
-/* ---------- LOCATION PAGE ---------- */
+/* ---------- LOCATION ---------- */
 .location{
   padding:25px;
   background:#eef3ee;
 }
-
-.location h2{
-  text-align:center;
-  margin:20px 0;
-}
-
+.location h2{text-align:center;margin:15px}
 .location-box{
   background:white;
   border-radius:20px;
@@ -159,50 +132,26 @@ body{
   max-width:420px;
   margin:0 auto;
 }
-
 .location-input{
   display:flex;
-  align-items:center;
   gap:10px;
   border:1px solid #ccc;
   border-radius:12px;
   padding:12px;
 }
-
 .location-input input{
   border:none;
   outline:none;
   width:100%;
-  font-size:14px;
 }
-
-.gps-btn{
-  cursor:pointer;
-  font-size:18px;
-}
-
-.radius{
-  margin-top:20px;
-}
-
+.radius{margin-top:20px}
 .radius-label{
   display:flex;
   justify-content:space-between;
   font-size:14px;
 }
-
-.radius input{
-  width:100%;
-  margin-top:10px;
-}
-
-.within{
-  text-align:center;
-  margin-top:12px;
-  font-size:13px;
-  opacity:0.7;
-}
-
+.radius input{width:100%;margin-top:10px}
+.within{text-align:center;margin-top:10px;font-size:13px;opacity:.7}
 .continue-btn{
   margin-top:20px;
   width:100%;
@@ -211,158 +160,180 @@ body{
   border-radius:30px;
   background:linear-gradient(90deg,#2ecc71,#27ae60);
   color:white;
-  font-size:16px;
   cursor:pointer;
 }
+
+/* ---------- RESULTS ---------- */
+.results{
+  padding:20px;
+}
+.results h2{text-align:center;margin-bottom:5px}
+.note{
+  text-align:center;
+  font-size:13px;
+  opacity:.7;
+  margin-bottom:15px;
+}
+.result-card{
+  background:white;
+  border-radius:16px;
+  padding:15px;
+  margin-bottom:12px;
+}
+.result-card h4{margin-bottom:5px}
+
+/* ---------- THANK YOU ---------- */
+.thankyou{
+  justify-content:space-between;
+  padding:30px;
+  text-align:center;
+}
+.stars span{
+  font-size:30px;
+  cursor:pointer;
+  color:#ccc;
+}
+.stars span.active{color:gold}
 </style>
 </head>
 
 <body>
 
-<!-- CLICK SOUND -->
 <audio id="clickSound">
-  <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3" type="audio/mpeg">
+  <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3">
 </audio>
 
-<!-- PAGE 1 : INTRO -->
-<section class="page intro active" id="page-intro">
+<!-- PAGE 1 -->
+<section class="page intro active" id="p1">
   <div class="title">Galigyan</div>
-
   <div class="center">
-    <button class="explore-btn" id="exploreBtn">Explore Now →</button>
+    <button class="explore-btn" id="toServices">Explore Now →</button>
   </div>
-
   <div class="footer">Created by Aman Kumar Mishra</div>
 </section>
 
-<!-- PAGE 2 : SERVICES -->
-<section class="page services" id="page-services">
-  <div class="home-btn" id="homeBtn1">🏠 Home</div>
-
+<!-- PAGE 2 -->
+<section class="page services" id="p2">
+  <div class="home-btn" onclick="goHome()">🏠 Home</div>
   <h2>What do you want to explore?</h2>
 
   <div class="service-grid">
-
-    <div class="service-card"
-      style="background-image:url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da')">
-      <div class="service-content">
-        <h3>Best Places</h3>
-        <div class="rating">★★★★★</div>
-      </div>
+    <div class="service-card" style="background-image:url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da')">
+      <div class="service-content"><h3>Best Places</h3><div class="rating">★★★★★</div></div>
     </div>
-
-    <div class="service-card"
-      style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945')">
-      <div class="service-content">
-        <h3>Hotels & Stays</h3>
-        <div class="rating">★★★★☆</div>
-      </div>
+    <div class="service-card" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945')">
+      <div class="service-content"><h3>Hotels</h3><div class="rating">★★★★☆</div></div>
     </div>
-
-    <div class="service-card"
-      style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada')">
-      <div class="service-content">
-        <h3>Spiritual Places</h3>
-        <div class="rating">★★★★★</div>
-      </div>
+    <div class="service-card" style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada')">
+      <div class="service-content"><h3>Spiritual</h3><div class="rating">★★★★★</div></div>
     </div>
-
-    <div class="service-card"
-      style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5')">
-      <div class="service-content">
-        <h3>Restaurants</h3>
-        <div class="rating">★★★★☆</div>
-      </div>
+    <div class="service-card" style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5')">
+      <div class="service-content"><h3>Restaurants</h3><div class="rating">★★★★☆</div></div>
     </div>
-
-    <div class="service-card"
-      style="background-image:url('https://images.unsplash.com/photo-1521334884684-d80222895322')">
-      <div class="service-content">
-        <h3>Shopping Areas</h3>
-        <div class="rating">★★★★☆</div>
-      </div>
+    <div class="service-card" style="background-image:url('https://images.unsplash.com/photo-1521334884684-d80222895322')">
+      <div class="service-content"><h3>Shopping</h3><div class="rating">★★★★☆</div></div>
     </div>
-
   </div>
+
+  <div class="creator">Created by Aman Kumar Mishra</div>
 </section>
 
-<!-- PAGE 3 : LOCATION -->
-<section class="page location" id="page-location">
-  <div class="home-btn" id="homeBtn2">🏠 Home</div>
-
+<!-- PAGE 3 -->
+<section class="page location" id="p3">
+  <div class="home-btn" onclick="goHome()">🏠 Home</div>
   <h2>Where are you right now?</h2>
-
   <div class="location-box">
-
     <div class="location-input">
-      <input type="text" placeholder="Enter your location">
-      <div class="gps-btn">📍</div>
+      <input placeholder="Enter your location">
+      <span>📍</span>
     </div>
-
     <div class="radius">
-      <div class="radius-label">
-        <span>10 m</span>
-        <span>♾</span>
-      </div>
-      <input type="range" min="10" max="100" value="10">
+      <div class="radius-label"><span>10 m</span><span>♾</span></div>
+      <input type="range">
     </div>
-
     <div class="within">Within India</div>
-
-    <button class="continue-btn">Continue</button>
+    <button class="continue-btn" onclick="goPage('p4')">Continue</button>
   </div>
+  <div class="creator">Created by Aman Kumar Mishra</div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page results" id="p4">
+  <div class="home-btn" onclick="goHome()">🏠 Home</div>
+  <h2>Best results for you</h2>
+  <div class="note">Showing sample results. Real data coming soon.</div>
+
+  <div class="result-card">
+    <h4>Taj Mahal</h4>
+    <p>Historic monument in Agra</p>
+    ⭐⭐⭐⭐⭐
+  </div>
+  <div class="result-card">
+    <h4>Golden Temple</h4>
+    <p>Spiritual place in Amritsar</p>
+    ⭐⭐⭐⭐☆
+  </div>
+
+  <button class="continue-btn" onclick="goPage('p5')">Continue</button>
+  <div class="creator">Created by Aman Kumar Mishra</div>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page thankyou" id="p5">
+  <div class="home-btn" onclick="goHome()">🏠 Home</div>
+
+  <div>
+    <h2>Thank you for exploring India with Galigyan 🌏</h2>
+    <p>We hope you enjoyed the journey</p>
+
+    <div class="stars" id="stars">
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+    </div>
+  </div>
+
+  <div class="creator">Created by Aman Kumar Mishra</div>
 </section>
 
 <script>
-/* CLICK SOUND */
-var clickSound=document.getElementById("clickSound");
-function playClick(){
-  clickSound.currentTime=0;
-  clickSound.play();
-}
+var sound=document.getElementById("clickSound");
+function clickSound(){sound.currentTime=0;sound.play()}
 
-/* PAGE SWITCH */
-function showPage(id){
+function goPage(id){
+  clickSound();
   var pages=document.getElementsByClassName("page");
-  for(var i=0;i<pages.length;i++){
-    pages[i].classList.remove("active");
-  }
+  for(var i=0;i<pages.length;i++){pages[i].classList.remove("active")}
   document.getElementById(id).classList.add("active");
 }
+function goHome(){goPage("p1")}
 
-/* INTRO IMAGE ROTATION */
-var intro=document.getElementById("page-intro");
-var images=[
+document.getElementById("toServices").onclick=function(){goPage("p2")}
+
+var cards=document.getElementsByClassName("service-card");
+for(var i=0;i<cards.length;i++){
+  cards[i].onclick=function(){goPage("p3")}
+}
+
+/* intro images */
+var intro=document.getElementById("p1");
+var imgs=[
   "https://images.unsplash.com/photo-1564507592333-c60657eea523",
   "https://images.unsplash.com/photo-1506466010722-395aa2bef877",
   "https://images.unsplash.com/photo-1548013146-72479768bada"
 ];
 var idx=0;
-intro.style.backgroundImage="url("+images[0]+")";
+intro.style.backgroundImage="url("+imgs[0]+")";
 setInterval(function(){
-  idx++; if(idx>=images.length){idx=0;}
-  intro.style.backgroundImage="url("+images[idx]+")";
+  idx++; if(idx>=imgs.length) idx=0;
+  intro.style.backgroundImage="url("+imgs[idx]+")";
 },4000);
 
-/* EVENTS */
-document.getElementById("exploreBtn").onclick=function(){
-  playClick(); showPage("page-services");
-};
-
-document.getElementById("homeBtn1").onclick=function(){
-  playClick(); showPage("page-intro");
-};
-
-document.getElementById("homeBtn2").onclick=function(){
-  playClick(); showPage("page-intro");
-};
-
-/* SERVICE → LOCATION */
-var services=document.getElementsByClassName("service-card");
-for(var s=0;s<services.length;s++){
-  services[s].onclick=function(){
-    playClick(); showPage("page-location");
-  };
+/* rating */
+var stars=document.getElementById("stars").children;
+for(let i=0;i<stars.length;i++){
+  stars[i].onclick=function(){
+    for(let j=0;j<stars.length;j++) stars[j].classList.remove("active");
+    for(let k=0;k<=i;k++) stars[k].classList.add("active");
+  }
 }
 </script>
 
