@@ -65,12 +65,12 @@ button{
 
 <body>
 
-<!-- INTRO -->
+<!-- HOME -->
 <div class="page active" id="home">
   <div id="hero">
     <h1>Galigyan</h1>
     <p>Your trusted guide to India’s travel spots, hotels & spiritual places</p>
-    <button onclick="goPage('explore')">Explore Now</button>
+    <button id="exploreBtn">Explore Now</button>
     <p style="margin-top:40px;font-size:14px;">Created by Aman Kumar Mishra</p>
   </div>
 </div>
@@ -84,7 +84,7 @@ button{
     <div class="card">📍 Golden Temple – Amritsar</div>
     <div class="card">📍 Meenakshi Temple – Madurai</div>
 
-    <button onclick="goPage('thanks')">Continue</button>
+    <button id="continueBtn">Continue</button>
   </div>
 </div>
 
@@ -94,52 +94,54 @@ button{
     <h2>Thank You for Visiting Galigyan</h2>
     <p>Rate your experience</p>
 
-    <div class="rating">
-      <span onclick="rate(this)">★</span>
-      <span onclick="rate(this)">★</span>
-      <span onclick="rate(this)">★</span>
-      <span onclick="rate(this)">★</span>
-      <span onclick="rate(this)">★</span>
+    <div class="rating" id="rating">
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
     </div>
   </div>
 </div>
 
-<!-- SCRIPT (SAFE, NO ERRORS) -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function(){
+
+  const pages = document.querySelectorAll(".page");
+
+  function showPage(id){
+    pages.forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+  }
+
+  document.getElementById("exploreBtn").addEventListener("click", () => {
+    showPage("explore");
+  });
+
+  document.getElementById("continueBtn").addEventListener("click", () => {
+    showPage("thanks");
+  });
 
   const hero = document.getElementById("hero");
-  if(hero){
-    const images = [
-      "https://images.unsplash.com/photo-1564507592333-c60657eea523",
-      "https://images.unsplash.com/photo-1587474260584-136574528ed5",
-      "https://images.unsplash.com/photo-1548013146-72479768bada"
-    ];
-    let i = 0;
-    hero.style.backgroundImage = url(${images[0]});
-    setInterval(() => {
-      i = (i + 1) % images.length;
-      hero.style.backgroundImage = url(${images[i]});
-    }, 4000);
-  }
+  const images = [
+    "https://images.unsplash.com/photo-1564507592333-c60657eea523",
+    "https://images.unsplash.com/photo-1587474260584-136574528ed5",
+    "https://images.unsplash.com/photo-1548013146-72479768bada"
+  ];
+  let i = 0;
+  hero.style.backgroundImage = url(${images[0]});
+  setInterval(() => {
+    i = (i + 1) % images.length;
+    hero.style.backgroundImage = url(${images[i]});
+  }, 4000);
+
+  const stars = document.querySelectorAll("#rating span");
+  stars.forEach((star, index) => {
+    star.addEventListener("click", () => {
+      stars.forEach(s => s.classList.remove("active"));
+      for(let j=0;j<=index;j++){
+        stars[j].classList.add("active");
+      }
+    });
+  });
 
 });
-
-function goPage(id){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-
-function rate(el){
-  const stars = document.querySelectorAll(".rating span");
-  stars.forEach(s=>s.classList.remove("active"));
-  el.classList.add("active");
-  let prev = el.previousElementSibling;
-  while(prev){
-    prev.classList.add("active");
-    prev = prev.previousElementSibling;
-  }
-}
 </script>
 
 </body>
