@@ -16,10 +16,19 @@ body{
   background:#f6f3ec;
 }
 
+/* ---------- PAGE SYSTEM ---------- */
+.page{
+  display:none;
+  min-height:100vh;
+  padding:40px 20px;
+}
+
+.page.active{
+  display:block;
+}
+
 /* ---------- HERO ---------- */
 .hero{
-  height:100vh;
-  width:100%;
   position:relative;
   background-size:cover;
   background-position:center;
@@ -39,7 +48,6 @@ body{
   position:relative;
   text-align:center;
   color:white;
-  padding:20px;
   max-width:720px;
 }
 
@@ -50,8 +58,8 @@ body{
 
 .hero p{
   font-size:18px;
-  line-height:1.5;
   margin-bottom:25px;
+  line-height:1.5;
 }
 
 .hero button{
@@ -71,22 +79,16 @@ body{
 }
 
 /* ---------- SERVICES ---------- */
-.services{
-  padding:60px 20px;
-  background:#fff7e6;
-}
-
 .services h2{
-  font-size:34px;
   text-align:center;
+  font-size:34px;
   margin-bottom:10px;
 }
 
 .services p{
   text-align:center;
-  max-width:600px;
-  margin:0 auto 40px;
   color:#555;
+  margin-bottom:30px;
 }
 
 .service-card{
@@ -96,42 +98,15 @@ body{
   margin:18px auto;
   max-width:420px;
   box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  cursor:pointer;
 }
 
-.icon-box{
-  width:56px;
-  height:56px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.icon{
   font-size:26px;
-  color:white;
-  margin-bottom:12px;
-}
-
-.travel{background:linear-gradient(135deg,#2196f3,#21cbf3);}
-.hotel{background:linear-gradient(135deg,#9c27b0,#e040fb);}
-.spiritual{background:linear-gradient(135deg,#ff9800,#ff5722);}
-.food{background:linear-gradient(135deg,#4caf50,#8bc34a);}
-.shopping{background:linear-gradient(135deg,#e91e63,#ff6090);}
-
-.service-card h3{
-  font-size:20px;
-  margin-bottom:6px;
-}
-
-.service-card span{
-  color:#666;
-  font-size:14px;
+  margin-bottom:10px;
 }
 
 /* ---------- LOCATION ---------- */
-.location{
-  padding:70px 20px;
-  background:#f6f3ec;
-}
-
 .location h2{
   text-align:center;
   font-size:34px;
@@ -148,49 +123,29 @@ body{
   max-width:420px;
   margin:0 auto;
   background:white;
-  border-radius:22px;
   padding:30px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  border-radius:22px;
 }
 
-.location-input{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  border:1px solid #ddd;
+.location-box input{
+  width:100%;
   padding:14px;
   border-radius:14px;
-  margin-bottom:25px;
-}
-
-.location-input span{
-  font-size:18px;
-}
-
-.location-input input{
-  border:none;
-  outline:none;
-  font-size:15px;
-  width:100%;
-}
-
-.radius-label{
-  font-size:14px;
-  margin-bottom:8px;
-  color:#444;
+  border:1px solid #ccc;
+  margin-bottom:20px;
 }
 
 .range{
   width:100%;
 }
 
-.radius-value{
+.radius{
   text-align:center;
-  margin:12px 0 22px;
+  margin:10px 0 20px;
   font-weight:bold;
 }
 
-.location button{
+.location-box button{
   width:100%;
   padding:14px;
   font-size:16px;
@@ -205,103 +160,91 @@ body{
 
 <body>
 
-<!-- HERO -->
-<section class="hero" id="hero">
+<!-- PAGE 1: HERO -->
+<section class="page hero active" id="page-hero">
   <div class="hero-content">
     <h1>Discover Incredible India with GaliGyan</h1>
     <p>
       Your trusted guide to India’s best travel destinations,
       hotels, spiritual places, food spots and shopping areas.
     </p>
-    <button onclick="goExplore()">Explore Now →</button>
+    <button onclick="goPage('page-services')">Explore Now →</button>
     <div class="creator">Created by Aman Kumar Mishra</div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services" id="services">
+<!-- PAGE 2: SERVICES -->
+<section class="page services" id="page-services">
   <h2>What Would You Like to Explore?</h2>
-  <p>Select a category to discover amazing places near you</p>
+  <p>Select a category to continue</p>
 
-  <div class="service-card">
-    <div class="icon-box travel">📍</div>
-    <h3>Travel Spots</h3>
-    <span>Discover scenic destinations and tourist attractions</span>
+  <div class="service-card" onclick="goPage('page-location')">
+    <div class="icon">📍</div>
+    <strong>Travel Spots</strong>
   </div>
 
-  <div class="service-card">
-    <div class="icon-box hotel">🏨</div>
-    <h3>Hotels & Stays</h3>
-    <span>Find comfortable accommodations and rest houses</span>
+  <div class="service-card" onclick="goPage('page-location')">
+    <div class="icon">🏨</div>
+    <strong>Hotels & Stays</strong>
   </div>
 
-  <div class="service-card">
-    <div class="icon-box spiritual">🛕</div>
-    <h3>Spiritual Places</h3>
-    <span>Visit temples, mosques, churches and sacred sites</span>
+  <div class="service-card" onclick="goPage('page-location')">
+    <div class="icon">🛕</div>
+    <strong>Spiritual Places</strong>
   </div>
 
-  <div class="service-card">
-    <div class="icon-box food">🍽</div>
-    <h3>Restaurants</h3>
-    <span>Explore the best dining and food experiences</span>
+  <div class="service-card" onclick="goPage('page-location')">
+    <div class="icon">🍽</div>
+    <strong>Restaurants</strong>
   </div>
 
-  <div class="service-card">
-    <div class="icon-box shopping">🛍</div>
-    <h3>Shopping Areas</h3>
-    <span>Explore malls and popular shopping destinations</span>
+  <div class="service-card" onclick="goPage('page-location')">
+    <div class="icon">🛍</div>
+    <strong>Shopping Areas</strong>
   </div>
 </section>
 
-<!-- LOCATION -->
-<section class="location" id="location">
+<!-- PAGE 3: LOCATION -->
+<section class="page location" id="page-location">
   <h2>Where are you right now?</h2>
-  <p>Enter your location and choose search radius</p>
+  <p>Enter your location and select radius</p>
 
   <div class="location-box">
-    <div class="location-input">
-      <span>📍</span>
-      <input type="text" placeholder="Enter city or area (e.g. Delhi)">
-    </div>
+    <input placeholder="Enter city or area">
 
-    <div class="radius-label">Search radius</div>
     <input type="range" min="1" max="100" value="10"
       class="range"
-      oninput="document.getElementById('radiusVal').innerText=this.value+' km'">
+      oninput="document.getElementById('r').innerText=this.value+' km'">
 
-    <div class="radius-value" id="radiusVal">10 km</div>
+    <div class="radius" id="r">10 km</div>
 
     <button>Find Places</button>
   </div>
 </section>
 
 <script>
-/* ---------- HERO IMAGE ROTATION ---------- */
-const hero=document.getElementById("hero");
+/* ---------- PAGE SWITCH ---------- */
+function goPage(id){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+}
 
+/* ---------- HERO IMAGE ROTATION ---------- */
+const hero=document.getElementById("page-hero");
 const images=[
   "https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
   "https://images.unsplash.com/photo-1548013146-72479768bada",
   "https://images.unsplash.com/photo-1506466010722-395aa2bef877",
   "https://images.unsplash.com/photo-1587474260584-136574528ed5"
 ];
-
-let index=0;
+let i=0;
 hero.style.backgroundImage="url("+images[0]+")";
-
-setInterval(function(){
-  index=(index+1)%images.length;
-  hero.style.backgroundImage="url("+images[index]+")";
+setInterval(()=>{
+  i=(i+1)%images.length;
+  hero.style.backgroundImage="url("+images[i]+")";
 },4000);
-
-/* ---------- SCROLL ---------- */
-function goExplore(){
-  const section=document.getElementById("services");
-  if(section){
-    section.scrollIntoView({behavior:"smooth"});
-  }
-}
 </script>
 
 </body>
