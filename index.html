@@ -1,19 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Test</title>
+<title>Galigyan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:#fff6e5;
+  overflow:hidden;
+}
+.page{
+  display:none;
+  min-height:100vh;
+  padding:24px;
+}
+.page.active{display:block}
+header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+.hero{
+  height:100vh;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+}
+.hero h1{font-size:42px;margin-bottom:10px}
+.hero button{
+  padding:14px 28px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:#2563eb;
+  color:#fff;
+  cursor:pointer;
+}
+.footer{
+  position:absolute;
+  bottom:20px;
+  width:100%;
+  text-align:center;
+  font-size:14px;
+}
+.card{
+  background:#fff;
+  padding:18px;
+  border-radius:12px;
+  margin:12px 0;
+  box-shadow:0 6px 14px rgba(0,0,0,.1);
+  cursor:pointer;
+}
+input,select{
+  width:100%;
+  padding:14px;
+  margin:12px 0;
+  font-size:16px;
+}
+.range-value{
+  text-align:center;
+  font-weight:600;
+}
+.rating span{
+  font-size:32px;
+  cursor:pointer;
+ երով
+}
+.rating span.active{color:gold}
+</style>
 </head>
+
 <body>
 
-<button onclick="go('page2')">Go</button>
+<!-- PAGE 1 -->
+<div id="p1" class="page active">
+  <div class="hero" id="hero">
+    <h1>Galigyan</h1>
+    <button onclick="go('p2')">Explore Now</button>
+    <div class="footer">Created by Aman Kumar Mishra</div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="p2" class="page">
+  <header onclick="go('p1')">🏠 Home</header>
+  <h2>Choose a Service</h2>
+  <div class="card" onclick="go('p3')">🏞 Travel Spots</div>
+  <div class="card" onclick="go('p3')">🏨 Hotels & Stays</div>
+  <div class="card" onclick="go('p3')">🛕 Spiritual Places</div>
+  <div class="card" onclick="go('p3')">🍽 Restaurants</div>
+  <div class="card" onclick="go('p3')">🛍 Shopping Areas</div>
+</div>
+
+<!-- PAGE 3 -->
+<div id="p3" class="page">
+  <header onclick="go('p2')">🏠 Home</header>
+  <h2>Your Location</h2>
+  <input placeholder="Enter your location">
+  <button onclick="alert('GPS will be added later')">📍 Use GPS</button>
+  <h3>Radius</h3>
+  <input type="range" min="10" max="100000" value="1000" oninput="updateRadius(this.value)">
+  <div class="range-value" id="radiusText">1 km</div>
+  <button onclick="go('p4')">Find Places</button>
+</div>
+
+<!-- PAGE 4 -->
+<div id="p4" class="page">
+  <header onclick="go('p1')">🏠 Home</header>
+  <h2>Results</h2>
+  <div class="card">Taj Mahal – Agra</div>
+  <div class="card">Golden Temple – Amritsar</div>
+  <div class="card">Meenakshi Temple – Madurai</div>
+  <button onclick="go('p5')">Continue</button>
+</div>
+
+<!-- PAGE 5 -->
+<div id="p5" class="page">
+  <header onclick="go('p1')">🏠 Home</header>
+  <h2>Thank You for Exploring ❤</h2>
+  <p>Rate your experience</p>
+  <div class="rating" id="rating">
+    <span onclick="rate(1)">★</span>
+    <span onclick="rate(2)">★</span>
+    <span onclick="rate(3)">★</span>
+    <span onclick="rate(4)">★</span>
+    <span onclick="rate(5)">★</span>
+  </div>
+</div>
 
 <script>
-function go(id) {
-  alert("Working: " + id);
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  clickSound();
+}
+
+function updateRadius(v){
+  document.getElementById('radiusText').innerText =
+    v>=100000 ? '∞' : (v/1000)+' km';
+}
+
+function rate(n){
+  document.querySelectorAll('#rating span').forEach((s,i)=>{
+    s.classList.toggle('active',i<n);
+  });
+}
+
+const hero=document.getElementById('hero');
+const imgs=[
+'https://images.unsplash.com/photo-1564507592333-c60657eea523',
+'https://images.unsplash.com/photo-1548013146-72479768bada',
+'https://images.unsplash.com/photo-1587474260584-136574528ed5'
+];
+let i=0;
+hero.style.backgroundImage=url(${imgs[0]});
+setInterval(()=>{
+  i=(i+1)%imgs.length;
+  hero.style.backgroundImage=url(${imgs[i]});
+},4000);
+
+const click=new Audio('https://assets.mixkit.co/sfx/preview/mixkit-soft-click-1121.mp3');
+function clickSound(){
+  click.currentTime=0;
+  click.play();
 }
 </script>
 
 </body>
 </html>
-
