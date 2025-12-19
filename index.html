@@ -1,177 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Galigyan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Galigyan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff6e5;
-    }
+<style>
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+  }
 
-    .page {
-      display: none;
-      min-height: 100vh;
-      text-align: center;
-      padding: 40px;
-    }
+  body{
+    overflow:hidden; /* NO SCROLL */
+  }
 
-    .page.active {
-      display: block;
-    }
+  /* FULL SCREEN INTRO */
+  .intro{
+    width:100vw;
+    height:100vh;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    color:white;
+    position:relative;
+  }
 
-    #hero {
-      min-height: 100vh;
-      background-size: cover;
-      background-position: center;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
+  /* DARK OVERLAY */
+  .intro::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+  }
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
+  /* FLOATING TITLE */
+  .title{
+    position:relative;
+    margin-top:25px;
+    font-size:38px;
+    font-weight:bold;
+    letter-spacing:1px;
+    z-index:2;
+  }
 
-    p {
-      font-size: 18px;
-      max-width: 600px;
-    }
+  /* CENTER BUTTON */
+  .center{
+    position:relative;
+    z-index:2;
+    text-align:center;
+  }
 
-    button {
-      padding: 14px 28px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      background: #2563eb;
-      color: white;
-      cursor: pointer;
-      margin-top: 20px;
-    }
+  .explore-btn{
+    padding:16px 36px;
+    font-size:18px;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
+    color:white;
+    cursor:pointer;
+  }
 
-    .card {
-      background: white;
-      padding: 20px;
-      margin: 15px auto;
-      max-width: 400px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .rating span {
-      font-size: 30px;
-      cursor: pointer;
-      color: #ccc;
-    }
-
-    .rating span.active {
-      color: gold;
-    }
-  </style>
+  /* FOOTER TEXT */
+  .footer{
+    position:relative;
+    z-index:2;
+    margin-bottom:20px;
+    font-size:14px;
+    opacity:0.85;
+  }
+</style>
 </head>
 
 <body>
 
-<!-- HOME PAGE -->
-<div id="home" class="page active">
-  <div id="hero">
-    <h1>Galigyan</h1>
-    <p>Your trusted guide to India’s travel, spiritual & cultural places</p>
-    <button id="exploreBtn">Explore Now</button>
-    <p style="margin-top:40px;font-size:14px;">
-      Created by Aman Kumar Mishra
-    </p>
+<section class="intro" id="intro">
+  <div class="title">Galigyan</div>
+
+  <div class="center">
+    <button class="explore-btn">Explore Now →</button>
   </div>
-</div>
 
-<!-- EXPLORE PAGE -->
-<div id="explore" class="page">
-  <h1>Explore India</h1>
+  <div class="footer">Created by Aman Kumar Mishra</div>
+</section>
 
-  <div class="card">📍 Taj Mahal – Agra</div>
-  <div class="card">📍 Golden Temple – Amritsar</div>
-  <div class="card">📍 Meenakshi Temple – Madurai</div>
-
-  <button id="continueBtn">Continue</button>
-</div>
-
-<!-- THANK YOU PAGE -->
-<div id="thanks" class="page">
-  <h1>Thank You</h1>
-  <p>Rate your experience</p>
-
-  <div class="rating" id="rating">
-    <span>★</span>
-    <span>★</span>
-    <span>★</span>
-    <span>★</span>
-    <span>★</span>
-  </div>
-</div>
-
-<!-- SCRIPT -->
 <script>
-  // PAGE SWITCHING
-  function showPage(id) {
-    var pages = document.getElementsByClassName("page");
-    for (var i = 0; i < pages.length; i++) {
-      pages[i].classList.remove("active");
-    }
-    document.getElementById(id).classList.add("active");
-  }
+  /* BACKGROUND IMAGE ROTATION (SAFE JS) */
+  var intro = document.getElementById("intro");
 
-  document.getElementById("exploreBtn").onclick = function () {
-    showPage("explore");
-  };
-
-  document.getElementById("continueBtn").onclick = function () {
-    showPage("thanks");
-  };
-
-  // HERO IMAGE ROTATION
-  var hero = document.getElementById("hero");
   var images = [
-    "https://images.unsplash.com/photo-1564507592333-c60657eea523",
-    "https://images.unsplash.com/photo-1548013146-72479768bada",
-    "https://images.unsplash.com/photo-1587474260584-136574528ed5"
+    "https://images.unsplash.com/photo-1564507592333-c60657eea523",  // Taj Mahal
+    "https://images.unsplash.com/photo-1548013146-72479768bada",  // Temple
+    "https://images.unsplash.com/photo-1506466010722-395aa2bef877" // Travel
   ];
-  var index = 0;
 
-  hero.style.backgroundImage = "url(" + images[0] + ")";
+  var i = 0;
+  intro.style.backgroundImage = "url(" + images[0] + ")";
 
-  setInterval(function () {
-    index = index + 1;
-    if (index >= images.length) {
-      index = 0;
+  setInterval(function(){
+    i++;
+    if(i >= images.length){
+      i = 0;
     }
-    hero.style.backgroundImage = "url(" + images[index] + ")";
+    intro.style.backgroundImage = "url(" + images[i] + ")";
   }, 4000);
-
-  // RATING SYSTEM
-  var stars = document.getElementById("rating").getElementsByTagName("span");
-
-  for (var s = 0; s < stars.length; s++) {
-    stars[s].onclick = function () {
-      for (var j = 0; j < stars.length; j++) {
-        stars[j].classList.remove("active");
-      }
-      this.classList.add("active");
-
-      var prev = this.previousElementSibling;
-      while (prev) {
-        prev.classList.add("active");
-        prev = prev.previousElementSibling;
-      }
-    };
-  }
 </script>
 
 </body>
