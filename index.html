@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GaliGyan</title>
+
+<style>
+:root {
+  --bg: #f5f1e8;
+  --text: #222;
+  --card: #ffffff;
+  --primary: #ff7a18;
+}
+
+.dark {
+  --bg: #121212;
+  --text: #f1f1f1;
+  --card: #1e1e1e;
+  --primary: #ff9f43;
+}
+
+* {
+  transition: background 0.4s, color 0.4s;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* Toggle button */
+.toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 100;
+}
+
+.toggle button {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: var(--primary);
+  color: white;
+}
+
+/* Pages */
+section {
+  min-height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+  text-align: center;
+}
+
+section.active {
+  display: flex;
+}
+
+/* Intro animation */
+#intro {
+  animation: introIn 0.9s ease forwards;
+}
+
+@keyframes introIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons */
+button {
+  padding: 12px 22px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Page flip */
+.page {
+  perspective: 1200px;
+}
+
+.flip-out {
+  animation: flipOut 0.6s ease forwards;
+}
+
+@keyframes flipOut {
+  from { transform: rotateY(0deg); opacity: 1; }
+  to { transform: rotateY(-90deg); opacity: 0; }
+}
+
+.flip-in {
+  animation: flipIn 0.6s ease forwards;
+}
+
+@keyframes flipIn {
+  from { transform: rotateY(90deg); opacity: 0; }
+  to { transform: rotateY(0deg); opacity: 1; }
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: var(--card);
+  padding: 20px;
+  margin: 10px;
+  width: 260px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+  transition: opacity 0.5s, background 0.5s;
+}
+</style>
+</head>
+
+<body>
+
+<!-- THEME TOGGLE -->
+<div class="toggle">
+  <button id="themeBtn">🌙 / ☀</button>
+</div>
+
+<!-- INTRO -->
+<section id="intro" class="active page">
+  <h1 style="font-size:48px;">GaliGyan</h1>
+  <p>Your Personal Guide to India</p>
+  <button id="exploreBtn">Explore More</button>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="page">
+  <h2>Our Services</h2>
+  <div class="cards">
+    <div class="card service">Hidden Gems & Places</div>
+    <div class="card service">Hotels & Rest Houses</div>
+    <div class="card service">Spiritual Places & Museums</div>
+    <div class="card service">Restaurants & Food Courts</div>
+    <div class="card service">Malls & Shopping Areas</div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location" class="page">
+  <h2>Select Location</h2>
+  <input placeholder="Enter location" style="padding:10px;width:250px;"><br><br>
+  <select style="padding:10px;width:250px;">
+    <option>1 km</option>
+    <option>5 km</option>
+    <option>10 km</option>
+    <option>Unlimited</option>
+  </select><br><br>
+  <button onclick="go('results')">Show Results</button>
+</section>
+
+<!-- RESULTS -->
+<section id="results" class="page">
+  <h2>Best Places For You</h2>
+  <div class="card">Place 1 – short info</div>
+  <div class="card">Place 2 – short info</div>
+  <button onclick="go('thankyou')">Continue</button>
+</section>
+
+<!-- THANK YOU -->
+<section id="thankyou" class="page">
+  <h2>Thank You for Visiting</h2>
+  <p>We hope GaliGyan helped you explore better.</p>
+  <button onclick="go('intro')">Go Home</button>
+</section>
+
+<script>
+/* Page navigation */
+function go(id) {
+  const current = document.querySelector("section.active");
+  const next = document.getElementById(id);
+  if (current === next) return;
+
+  current.classList.add("flip-out");
+  setTimeout(() => {
+    current.classList.remove("active", "flip-out");
+    next.classList.add("active", "flip-in");
+    setTimeout(() => next.classList.remove("flip-in"), 600);
+  }, 600);
+}
+
+document.getElementById("exploreBtn").onclick = () => go("services");
+
+/* Services auto-rotation */
+const services = [
+  "Hidden Gems & Places",
+  "Hotels & Rest Houses",
+  "Spiritual Places & Museums",
+  "Restaurants & Food Courts",
+  "Malls & Shopping Areas"
+];
+const colors = ["#fff3e0", "#e3f2fd", "#e8f5e9", "#fce4ec", "#ede7f6"];
+const cards = document.querySelectorAll(".service");
+let idx = 0;
+
+setInterval(() => {
+  cards.forEach((card, i) => {
+    card.style.opacity = 0;
+    setTimeout(() => {
+      card.textContent = services[(idx + i) % services.length];
+      card.style.background = colors[(idx + i) % colors.length];
+      card.style.opacity = 1;
+    }, 300);
+    card.onclick = () => go("location");
+  });
+  idx++;
+}, 1000);
+
+/* Theme system (saved) */
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") document.body.classList.add("dark");
+
+document.getElementById("themeBtn").onclick = () => {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+};
+</script>
+
+</body>
+</html>
